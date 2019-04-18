@@ -1,0 +1,10 @@
+[{
+	"name": "Starbucks Gift Card",
+	"price": 5000,
+	"type": "Food and Drinks",
+	"tags": ["Gift Card", "Coffee", "Restaurant"],
+	"meta": {
+		"purchased": 10,
+		"selected": 10
+	}
+}]
