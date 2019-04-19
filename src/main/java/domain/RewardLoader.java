@@ -25,14 +25,12 @@ public class RewardLoader {
 		List<RewardItem> rewardItems = new ArrayList<RewardItem>();
 		ObjectMapper jsonMapper = new ObjectMapper();
 		try {
-			System.out.println(jsonRewardList);
-			System.out.println(
-					"JsonMapper: " + jsonMapper.readValue(jsonRewardList, new TypeReference<List<RewardItem>>() {
-					}));
+			System.out.println("Fetched:" + jsonRewardList.length() + " reward items.");
 			rewardItems = jsonMapper.readValue(jsonRewardList, new TypeReference<List<RewardItem>>() {
 			});
 		} catch (JsonProcessingException e) {
 			// Definitely a hand written auto catch block.
+			System.out.println("Error caught in RewardLoader.createRewardsList()");
 			e.printStackTrace();
 		}
 		return rewardItems;

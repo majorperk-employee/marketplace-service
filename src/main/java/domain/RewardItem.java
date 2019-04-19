@@ -3,20 +3,32 @@ package domain;
 import java.util.List;
 
 public class RewardItem {
+	
+	Long id;
 
 	String name;
 	Integer price;
 	String type;
+	String description;
 	List<String> tags;
+	String imageURL;
 	Meta meta;
 
 	public RewardItem() {
         super();
     }
     
-    public RewardItem(String name, Integer price, String category, String description, String tags, String image, Boolean incart) {
+    public RewardItem(String name, Integer price, String type, String description, List<String> tags, String imageURL, Meta meta) {
     	this.name = name;
     }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -40,6 +52,22 @@ public class RewardItem {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 
 	public List<String> getTags() {
