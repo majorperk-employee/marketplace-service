@@ -1,0 +1,16 @@
+[
+	{
+		"name": "Starbucks Gift Card",
+		"price": 5000,
+		"type": "Food and Drinks",
+		"tags": "testtag",
+		"meta": "testmeta"
+	},
+	{
+		"name": "Starbucks Gift Card",
+		"price": 5000,
+		"type": "Food and Drinks",
+		"tags": "testtag",
+		"meta": "testmeta"
+	}
+]
