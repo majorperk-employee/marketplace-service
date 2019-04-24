@@ -1,52 +1,180 @@
 [{
-  "username": "dledgerton0",
-  "password": "OgdfCVc3KI7F",
-  "firstName": "Drake",
-  "lastName": "Ledgerton",
-  "job": "Quality Control Specialist",
-  "tier": "XS",
-  "address": "4048 Eastlawn Center",
-  "city": "Cedar Rapids",
-  "state": "Iowa",
-  "email": "dledgerton0@wufoo.com",
-  "zip": "52405",
-  "picture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJ8SURBVDjLlZJZSJRRFMd/39JipZXZmCURrRBjKshkJW20CFGSQlAotENQr9FT1IP2HoFPFRFhCSMYGS1GEUUrkZHY2DItUs30kTnjrN9dehhzFAzqwuHcc+6f3z3ncIyL9/uPa80BqVWxUgqpQCiFlAqpNEKqESaRQiOVetZYv8gHYCutj9T5cgv4j3Piyrtlf+62VKoAoP3DBYQSCClwlcCVbtZLMfx2bEUjrisnjABoAHYt3fdPv8eSAldIsgCpAGh5EP4nwLaKfNIjAWIIALCzykPrwxA7VhUO5/yPQ9RVZmMnkhxdgSsVSmtsC/yPwliWSdvjMIYJ5pCo/WkYtKIodJ7C8V/wMh+oAMCUUqEB2zKoW+HBNqG20sN2n4canweAGp+H1RNusWBWiDlVu6ld8poXTYurAYxTbZ/0oU1F3O/5hWGM7tc2IZZS5DvX8ebdY3rpRmJ97xFRxcC7V/HAs679tisUWmvGWVBdPpPOLocNpdm1uP3yB4tzAkwt2YKMdzOxoJik7KNoTdkkEetvtoXKDNEyDTq7HIBhbxrgKuiLz2Ba/0dMy8EwY4zPcyAZZ/BbyrKFEJkZmLCupIB7rx3WejMVJMPdBB+dIX+6RokEpvoFZi7aTfPmciDZHYgctF2ZacE7dwrffiZYUJhD8Psg8vMNjM9Xmbe8Cp2+hSGj9NxMYSWTJFKSjx8i9Q0tQb8tpX54suVtWVqqya6QuEIiheLw7A7K128g7TRj21N5dSfNpU+bCedVMBiNd1y7UOMHQGs9pn1pq36SCjXpWGCrfn56ZfTsnoUNY+nsv63s16DTGRm4Oy/+M5bo7f1xdO+5t61j6X4DmUx477d3qncAAAAASUVORK5CYII=",
-  "points": "990",
-  "totaldays": 224,
-  "ontimedays": 56,
-  "daystreak": 3
+  "id": 3,
+  "username": "hzealander0",
+  "password": "TI8Xrbhbi",
+  "firstName": "Harland",
+  "lastName": "Zealander",
+  "job": "Dental Hygienist",
+  "tier": "L",
+  "address": "92 Merry Court",
+  "city": "Salem",
+  "state": "Oregon",
+  "email": "hzealander0@go.com",
+  "zip": "97312",
+  "picture": "data:image/png;base64,iVBORw0KGgoAAAANS",
+  "points": "52",
+  "totaldays": 583,
+  "ontimedays": 424,
+  "daystreak": 16,
+  "cart": [
+    {
+      "id": 3,
+      "items": [
+        {
+          "name": "$100 Airline Voucher",
+          "price": 5000,
+          "type": "Gift Card",
+          "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
+          "tags": [
+            "Voucher",
+            "Travel",
+            "Flight",
+            "Vacation Packages"
+          ],
+          "imageURL": "/assets/img/rewards/airline.jpg",
+          "meta": {
+            "purchased": 1,
+            "selected": 1
+          }
+        }
+      ]
+    }
+  ]
 }, {
-  "username": "cantonignetti1",
-  "password": "Vv6n3aXN9om",
-  "firstName": "Cordy",
-  "lastName": "Antonignetti",
-  "job": "Social Worker",
-  "tier": "M",
-  "address": "75 Lunder Crossing",
-  "city": "San Diego",
+  "id": 2,
+  "username": "seagles1",
+  "password": "EDY4zO",
+  "firstName": "Starla",
+  "lastName": "Eagles",
+  "job": "Assistant Manager",
+  "tier": "3XL",
+  "address": "335 Onsgard Terrace",
+  "city": "Houston",
+  "state": "Texas",
+  "email": "seagles1@gravatar.com",
+  "zip": "77218",
+  "picture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/",
+  "points": "388",
+  "totaldays": 430,
+  "ontimedays": 393,
+  "daystreak": 23,
+  "cart": [
+    {
+      "id": 2,
+      "items": [
+        {
+          "name": "$5 Amazon",
+          "price": 250,
+          "type": "Gift Card",
+          "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
+          "tags": [
+            "Gift Card",
+            "Gift Cards",
+            "Shopping",
+            "Amazon"
+          ],
+          "imageURL": "/assets/img/rewards/amazon.jpeg",
+          "meta": {
+            "purchased": 1,
+            "selected": 1
+          }
+        },
+        {
+          "name": "$10 Amazon",
+          "price": 500,
+          "type": "Gift Card",
+          "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
+          "tags": [
+            "Gift Card",
+            "Gift Cards",
+            "Shopping",
+            "Amazon"
+          ],
+          "imageURL": "/assets/img/rewards/amazon.jpeg",
+          "meta": {
+            "purchased": 1,
+            "selected": 1
+          }
+        },
+        {
+          "name": "$20 Amazon",
+          "price": 1000,
+          "type": "Gift Card",
+          "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
+          "tags": [
+            "Gift Card",
+            "Gift Cards",
+            "Shopping",
+            "Amazon"
+          ],
+          "imageURL": "/assets/img/rewards/amazon.jpeg",
+          "meta": {
+            "purchased": 1,
+            "selected": 1
+          }
+        }
+      ]
+    }
+  ]
+}, {
+  "id": 1,
+  "username": "mcatherick2",
+  "password": "z0tlhU",
+  "firstName": "Morey",
+  "lastName": "Catherick",
+  "job": "Structural Engineer",
+  "tier": "S",
+  "address": "9 Shelley Park",
+  "city": "Fullerton",
   "state": "California",
-  "email": "cantonignetti1@w3.org",
-  "zip": "92137",
-  "picture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJRSURBVDjLpZNLSJRhFIaff+Y3x3S8pKmjpBlRSKQGQUTbLhBCmxbSrk1CiyCJEAJxUe6qVQURtGvTJooQNLtYEbVKoVDJMUrFS6iMzs35zjkt/indBEIfnM23eM/Ded/XMzP+5/kvbhz5p4KqoWqIGk4UEcWJ4pziJPjzAerbmlERMMPMwEIYYAJmhqmiTlERVA0UjBAjn0YCARXHyvQ86eXEljZHy0qpqavdIDAx0ssJBo9/xIxgu20aoKfuMiVFDYDysPc+O6urEVFCAJq/wlDqLkOpO2S9cUTB5Scn8GGpFU2PYrqOE8XyNwgFzAH2ofIpst5jXiY7yekKTiDnwDkYzZ6gf+EoibVJRBRVELU8QV7AieNwtBURYThzhhwTgYjA+Fo9T1Yu0BV/8JdA1fBVDXUSHExzfEmM0l5fxWwyQzLcztJqGxV6lp8Lx1jL1KIuTIta4MpmASdKa9UvDlbGqIvspaVMUWvhR3QC5REn47eIvYnjzy6T8UPIVCQIkqihzhBRagqbUFOcraOmGEos0kDlqwn2TITY39FNYdMB0qMDfH07SHV6Ed+JomJEikvI3HyGSSAWeB5koGB2hn2X+ohMvobh62wvK2d3YyNz38bxRRTMo6yiitLSHagGljafu0Jyuh9QJq/eJlLbBKe7NjrQG6MopwFBfGzsb7b/bB7pPh8QqNHse6Q+P6f46UWy6TlSwGoiTKYgjLeVNr7rqO/dFi2+tqvS+X5omtVFx/f5sOQy1uNttc7vOxq6k0uznWHxGiVsMwb3Tg24vt9oKbFtb+0ZHwAAAABJRU5ErkJggg==",
-  "points": "56518",
-  "totaldays": 267,
-  "ontimedays": 129,
-  "daystreak": 35
-}, {
-  "username": "adavall2",
-  "password": "Y0sq3Y3",
-  "firstName": "Aloysia",
-  "lastName": "Davall",
-  "job": "Web Designer II",
-  "tier": "M",
-  "address": "55675 Laurel Alley",
-  "city": "Miami",
-  "state": "Florida",
-  "email": "adavall2@cloudflare.com",
-  "zip": "33129",
-  "picture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAHMSURBVDjLpZNNS1VRGIWf67HQ8MZVEtLserNIsk8JA0f1F8JZ/oRG9RNs3ESaNQscFQ5KCoIiopGhhFDgHZRgZEIRSN3PvddqcI5memZu2Ow1WQ/Pu+Et2OYgp4MDns7tcH9hY0dFNgZiBAyWkCEqzVFw71a58B8AYLD3MMZYYMAyMngXRILPm7X9BtHGzgoC29iZTQaSjGRiO2eEGFNFbKSsuJ31P6Qdtf8THZXSBVFC0Sk0iv7CCtcOPSDxFlEmhBxAEFlJmU2aC7HBaZ4zXBmn4tcoGgXvBygoK21D0nzSbxgsT3B0YJyB8I6euEbIA4TAv6JMiKJbGwyFVxSPlYhbTxm6NM1IWEBq5wBizMrp/I6i3HrB4NhNaCyz+GiOnlKdvvoSw8lKnkGqrAAxmlL7E2f6GhR7a6j5BSzi7/ecunGXiWSexdnJ4h6DTF1GsU2l9phS+QqqrWDVuTo1ilrf6Oqqcu7ydUKzdWePgVhdr7G6/ofk+0sqI+c5UvyBw08oJCzNVwGhRpX+s8PEZvv225kLY4W8bVycnfx6cXruRNKxhsOvdCF2TZ10j7L58QPVZzNPOvM2LDRbXcsPp+qWsbTreudFwvbxvyYHcoBEg0hXAAAAAElFTkSuQmCC",
-  "points": "32",
-  "totaldays": 148,
-  "ontimedays": 377,
-  "daystreak": 15
+  "email": "mcatherick2@guardian.co.uk",
+  "zip": "92640",
+  "picture": "data:image/png;base64,iVBORw0KGgoAAAANS",
+  "points": "2",
+  "totaldays": 293,
+  "ontimedays": 201,
+  "daystreak": 23,
+  "cart": [
+    {
+      "id": 1,
+      "items": [
+        {
+          "name": "Weekend Getaway - New York",
+          "price": 60000,
+          "type": "Vacation",
+          "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
+          "tags": [
+            "Vacation",
+            "Travel",
+            "New York",
+            "Flight",
+            "Vacation Packages"
+          ],
+          "imageURL": "/assets/img/rewards/weekend1.jpg",
+          "meta": {
+            "purchased": 1,
+            "selected": 1
+          }
+        },
+        {
+          "name": "Weekend Getaway - Minneapolis",
+          "price": 60000,
+          "type": "Vacation",
+          "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
+          "tags": [
+            "Vacation",
+            "Travel",
+            "Minneapolis",
+            "Flight",
+            "Vacation Packages"
+          ],
+          "imageURL": "/assets/img/rewards/weekend2.jpg",
+          "meta": {
+            "purchased": 1,
+            "selected": 1
+          }
+        }
+      ]
+    }
+  ]
 }]
