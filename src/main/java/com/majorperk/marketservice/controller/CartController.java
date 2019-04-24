@@ -2,7 +2,10 @@ package com.majorperk.marketservice.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +30,13 @@ class CartController {
 			@RequestParam(value = "itemId", required = true) Long itemId) {
 		return cartService.addItem(cartId, itemId);
 	}
+	
+	// POST remove items from the cart
+	@ResponseBody
+	@RequestMapping(value = "/cart/removeMultiple", method = RequestMethod.POST, produces = "application/json")
+	Cart removeItems(@RequestParam(value = "cartId", required = true) Long cartId, @RequestBody List<Long> rewardItemIds) {
+		return cartService.removeItems(cartId, rewardItemIds);
+	}
 
 	// GET remove item from Cart
 	@ResponseBody
@@ -36,10 +46,10 @@ class CartController {
 		return cartService.removeItem(cartId, itemToDrop);
 	}
 
-	// GET Cart's content
+	// GET Cart
 	@ResponseBody
-	@RequestMapping(value = "/cart/contents", method = RequestMethod.GET, produces = "application/json")
-	List<RewardItem> cartContents(@RequestParam(value = "cartId", required = true) Long cartId) {
-		return cartService.getContents(cartId);
+	@RequestMapping(value = "/cart", method = RequestMethod.GET, produces = "application/json")
+	Cart cartContents(@RequestParam(value = "cartId", required = true) Long cartId) {		
+		return cartService.getCart(cartId);
 	}
 }

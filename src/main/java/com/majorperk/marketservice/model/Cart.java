@@ -16,6 +16,8 @@ public class Cart {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	List<RewardItem> items;
+	
+	int cost;
 
 	public Cart() {
 		super();
@@ -39,5 +41,17 @@ public class Cart {
 
 	public void addCartItem(RewardItem item) {
 		this.items.add(item);
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+	
+	public void updateTotalCost(int pointsToUpdate) {
+		this.cost += pointsToUpdate;
 	}
 }
