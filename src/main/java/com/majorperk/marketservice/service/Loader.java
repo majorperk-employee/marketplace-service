@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.model.Category;
 import com.majorperk.marketservice.model.RewardItem;
 import com.majorperk.marketservice.utils.ReadJson;
@@ -45,5 +46,17 @@ public class Loader {
 			e.printStackTrace();
 		}
 		return categories;
+	}
+
+	public List<Account> createAccountList(String jsonAccountList) throws IOException {
+		List<Account> accounts = new ArrayList<Account>();
+		ObjectMapper jsonMapper = new ObjectMapper();
+		try {
+			accounts = jsonMapper.readValue(jsonAccountList, new TypeReference<List<Account>>() { });
+		} catch (JsonProcessingException e) {
+			// Definitely a hand written auto catch block.
+			e.printStackTrace();
+		}
+		return accounts;
 	}
 }

@@ -29,15 +29,15 @@ public class Cart {
 		this.id = id;
 	}
 
-	public List<RewardItem> getCartItems() {
+	public List<RewardItem> getItems() {
 		return items;
 	}
 
-	public void setCartItems(List<RewardItem> cartItems) {
-		this.items = cartItems;
+	public void setItems(List<RewardItem> items) {
+		this.items = items;
 	}
 
-	public void addCartItem(RewardItem cartItem) {
-		this.items.add(cartItem);
+	public void addCartItem(RewardItem item) {
+		this.items.add(item);
 	}
 }
