@@ -13,7 +13,7 @@ public class RewardItemMeta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     Integer purchased;
 	Integer selected;
     
@@ -33,6 +33,10 @@ public class RewardItemMeta {
     public void setPurchased(Integer purchased) {
         this.purchased = purchased;
     }
+    
+	public void incrementPurchased() {
+		this.purchased += 1;
+	}
 
     /**
      * @return the selected
