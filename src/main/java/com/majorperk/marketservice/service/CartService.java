@@ -25,6 +25,9 @@ public class CartService {
 		cart.getItems().add(itemToAdd);
 		cart.updateTotalCost(itemToAdd.getPrice());
 		
+		itemToAdd.getMeta().incrementPurchased();
+		rewardRepository.save(itemToAdd);
+		
 		return cartRepository.save(cart);
 	}
 
