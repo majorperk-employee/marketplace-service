@@ -1,4 +1,4 @@
-package com.majorperk.marketservice.controller;
+package com.majorperk.marketservice.controller.example;
 
 import com.majorperk.marketservice.exception.ResourceNotFoundException;
 import com.majorperk.marketservice.model.Answer;
