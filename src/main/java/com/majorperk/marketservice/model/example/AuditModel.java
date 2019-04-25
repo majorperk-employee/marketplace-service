@@ -1,4 +1,4 @@
-package com.majorperk.marketservice.model;
+package com.majorperk.marketservice.model.example;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;

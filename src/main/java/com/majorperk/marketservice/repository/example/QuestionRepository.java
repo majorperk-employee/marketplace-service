@@ -1,6 +1,6 @@
-package com.majorperk.marketservice.repository;
+package com.majorperk.marketservice.repository.example;
 
-import com.majorperk.marketservice.model.Question;
+import com.majorperk.marketservice.model.example.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

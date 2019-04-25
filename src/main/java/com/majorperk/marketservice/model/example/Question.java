@@ -1,10 +1,10 @@
-package com.majorperk.marketservice.model;
+package com.majorperk.marketservice.model.example;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.majorperk.marketservice.model.AuditModel;
+import com.majorperk.marketservice.model.example.AuditModel;
 
 @Entity
 @Table(name = "questions")
