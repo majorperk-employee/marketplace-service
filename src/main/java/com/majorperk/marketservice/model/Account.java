@@ -1,10 +1,14 @@
 package com.majorperk.marketservice.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -16,7 +20,10 @@ public class Account {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	Cart cart = new Cart();
-
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	List<Order> orders = new ArrayList<Order>();
+	
 	private String username;
 	private String password;
 	private String firstName;
@@ -215,5 +222,17 @@ public class Account {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+	
+	public void addOrder(Order order) {
+		this.orders.add(order);
 	}
 }
