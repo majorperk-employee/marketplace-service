@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
+@RequestMapping("rewards")
 public class RewardController {
 
     @Autowired
@@ -28,29 +30,29 @@ public class RewardController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/rewards/all")
+    @GetMapping("/all")
     public @Valid List<RewardItem> getRewardItems() {
         return rewardRepository.findAll();
     }
 
 
-    @PostMapping("/rewards/customLoad")
+    @PostMapping("/customLoad")
     public @Valid List<RewardItem> createCustomRewardItems(@Valid @RequestBody List<RewardItem> rewardItem) {
         return rewardRepository.saveAll(rewardItem);
     }
     
-    @PostMapping("/rewards/defaultLoad")
+    @PostMapping("/defaultLoad")
     public @Valid List<RewardItem> createDefaultRewardItems() throws IOException {
     	Loader rewardLoader = new Loader();
         return rewardRepository.saveAll(rewardLoader.createRewardsList(rewardLoader.readJSON("./src/main/resources/defaultRewards.json")));
     }
     
-    @GetMapping("/rewards/getCategories")
+    @GetMapping("/getCategories")
     public @Valid List<Category> getCategories() {
     	return categoryRepository.findAll();
     }
     
-    @PostMapping("/rewards/loadDefaultCategories")
+    @PostMapping("/loadDefaultCategories")
     public @Valid List<Category> loadCategories() throws IOException {
     	Loader categoriesLoader = new Loader();
     	return categoryRepository.saveAll(categoriesLoader.createCategoriesList(categoriesLoader.readJSON("./src/main/resources/defaultCategories.json")));

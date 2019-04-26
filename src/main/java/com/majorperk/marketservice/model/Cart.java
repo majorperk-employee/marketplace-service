@@ -51,8 +51,4 @@ public class Cart {
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
-	
-	public void updateTotalCost(int pointsToUpdate) {
-		this.cost += pointsToUpdate;
-	}
 }
