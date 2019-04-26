@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.majorperk.marketservice.model.Cart;
 import com.majorperk.marketservice.service.CartService;
-import com.majorperk.marketservice.service.OrderService;
+import com.majorperk.marketservice.service.PurchaseService;
 
 
 @RestController
-class OrderController {
+class PurchaseController {
 
 	@Autowired
 	private CartService cartService;
 	
 	@Autowired
-	private OrderService orderService;
+	private PurchaseService purchaseService;
 
 	// Checkout
 	@ResponseBody
@@ -31,7 +31,7 @@ class OrderController {
 				  @RequestParam(value = "cartId", required = true) Long cartId,
 				  @RequestBody List<Long> rewardItemIds) {
 		
-		orderService.orderItems(userId, rewardItemIds);		
+		purchaseService.purchaseItems(userId, rewardItemIds);		
 		return cartService.removeItems(userId, rewardItemIds);
 	}
 }

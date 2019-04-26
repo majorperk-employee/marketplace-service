@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Order extends AuditModel {
+public class Purchase extends AuditModel {
 	@Id
 	@GeneratedValue
 	Long id;
@@ -17,7 +17,7 @@ public class Order extends AuditModel {
 	@ManyToMany(cascade = CascadeType.ALL)
 	List<RewardItem> items;
 
-	public Order() {
+	public Purchase() {
 		super();
 	}
 
@@ -37,7 +37,7 @@ public class Order extends AuditModel {
 		this.items = items;
 	}
 
-	public void addOrderItem(RewardItem item) {
+	public void addPurchaseItem(RewardItem item) {
 		this.items.add(item);
 	}
 }

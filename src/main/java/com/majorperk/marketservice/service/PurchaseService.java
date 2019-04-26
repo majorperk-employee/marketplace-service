@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.majorperk.marketservice.model.Account;
-import com.majorperk.marketservice.model.Order;
+import com.majorperk.marketservice.model.Purchase;
 import com.majorperk.marketservice.model.RewardItem;
 import com.majorperk.marketservice.repository.AccountRepository;
 import com.majorperk.marketservice.repository.RewardRepository;
 
 @Service
-public class OrderService {
+public class PurchaseService {
 
 	@Autowired
 	private AccountRepository accountRepository;
@@ -20,13 +20,12 @@ public class OrderService {
 	@Autowired
 	private RewardRepository rewardRepository;
 	
-	public void orderItems(Long userId, List<Long> rewardItemIds) {		
+	public void purchaseItems(Long userId, List<Long> rewardItemIds) {		
 		Account account = accountRepository.findById(userId).get();
-		Order order = new Order();
+		Purchase purchase = new Purchase();
 		
-		List<RewardItem> itemsToOrder = rewardRepository.findAllById(rewardItemIds);
-		itemsToOrder.forEach(item -> order.addOrderItem(item));
-		account.addOrder(order);
+		List<RewardItem> itemsToPurchase = rewardRepository.findAllById(rewardItemIds);
+		itemsToPurchase.forEach(item -> purchase.addPurchaseItem(item));
+		account.addPurchase(purchase);
 	}
-
 }

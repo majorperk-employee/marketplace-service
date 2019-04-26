@@ -22,7 +22,7 @@ public class Account {
 	Cart cart = new Cart();
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	List<Order> orders = new ArrayList<Order>();
+	List<Purchase> purchases = new ArrayList<Purchase>();
 	
 	private String username;
 	private String password;
@@ -224,15 +224,15 @@ public class Account {
 		this.email = email;
 	}
 
-	public List<Order> getOrders() {
-		return orders;
+	public List<Purchase> getPurchases() {
+		return purchases;
 	}
 
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
+	public void setPurchases(List<Purchase> purchases) {
+		this.purchases = purchases;
 	}
 	
-	public void addOrder(Order order) {
-		this.orders.add(order);
+	public void addPurchase(Purchase purchase) {
+		this.purchases.add(purchase);
 	}
 }
