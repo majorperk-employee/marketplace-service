@@ -50,6 +50,8 @@ public class PurchaseService {
 	}
 
 	public List<Purchase> getPurchases(Long userId) {
-		return new ArrayList<Purchase>();
+		Account account = accountRepository.findById(userId).get();
+		List<Purchase> purchases = account.getPurchases();
+		return purchases;
 	}
 }

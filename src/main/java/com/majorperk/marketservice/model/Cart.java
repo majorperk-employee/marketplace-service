@@ -24,6 +24,10 @@ public class Cart {
 		super();
 	}
 
+	public Cart(int cost) {
+		this.cost = -1;
+	}
+
 	public Long getId() {
 		return id;
 	}
