@@ -1,6 +1,7 @@
 package com.majorperk.marketservice.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -32,29 +33,54 @@ public class RewardController {
 
     @GetMapping("/all")
     public @Valid List<RewardItem> getRewardItems() {
-        return rewardRepository.findAll();
+        try {
+            return rewardRepository.findAll();
+        } catch (Exception e) {
+            System.out.println("Unable to list all rewards items. Please verify database.");
+            return new ArrayList<RewardItem>();
+        }
     }
 
 
     @PostMapping("/customLoad")
     public @Valid List<RewardItem> createCustomRewardItems(@Valid @RequestBody List<RewardItem> rewardItem) {
-        return rewardRepository.saveAll(rewardItem);
+        try {
+            return rewardRepository.saveAll(rewardItem);
+        } catch (Exception e) {
+            System.out.println("Unable to load custom objects to database.");
+            return new ArrayList<RewardItem>();
+        }
     }
     
     @PostMapping("/defaultLoad")
     public @Valid List<RewardItem> createDefaultRewardItems() throws IOException {
-    	Loader rewardLoader = new Loader();
-        return rewardRepository.saveAll(rewardLoader.createRewardsList(rewardLoader.readJSON("./src/main/resources/defaultRewards.json")));
+        try {
+            Loader rewardLoader = new Loader();
+            return rewardRepository.saveAll(rewardLoader.createRewardsList(rewardLoader.readJSON("./src/main/resources/defaultRewards.json")));
+        } catch (Exception e) {
+            System.out.println("Unable to load from JSON.");
+            return new ArrayList<RewardItem>();
+        }
     }
     
     @GetMapping("/getCategories")
     public @Valid List<Category> getCategories() {
-    	return categoryRepository.findAll();
+        try {
+            return categoryRepository.findAll();
+        } catch (Exception e) {
+            System.out.println("Unable to get all categories.");
+            return new ArrayList<Category>();
+        }
     }
     
     @PostMapping("/loadDefaultCategories")
     public @Valid List<Category> loadCategories() throws IOException {
-    	Loader categoriesLoader = new Loader();
-    	return categoryRepository.saveAll(categoriesLoader.createCategoriesList(categoriesLoader.readJSON("./src/main/resources/defaultCategories.json")));
+        try {
+            Loader categoriesLoader = new Loader();
+            return categoryRepository.saveAll(categoriesLoader.createCategoriesList(categoriesLoader.readJSON("./src/main/resources/defaultCategories.json")));
+        } catch (Exception e) {
+            System.out.println("Unable to load categories from JSON.");
+            return new ArrayList<Category>();
+        }
     }
 }

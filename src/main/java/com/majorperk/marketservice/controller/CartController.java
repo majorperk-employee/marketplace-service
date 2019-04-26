@@ -26,20 +26,35 @@ class CartController {
 	@ResponseBody
 	@RequestMapping(value = "/{id}/add", method = RequestMethod.POST, produces = "application/json")
 	Cart addItem(@PathVariable Long id, @RequestBody Long itemId) {
-		return cartService.addItem(id, itemId);
+		try {
+			return cartService.addItem(id, itemId);
+		} catch (Exception e) {
+			System.out.println("Unable to add items for user: " + id);
+			return new Cart();
+		}
 	}
 	
 	// POST remove items from the cart
 	@ResponseBody
 	@RequestMapping(value = "/{id}/remove", method = RequestMethod.POST, produces = "application/json")
 	Cart removeItems(@PathVariable Long id, @RequestBody List<Long> itemIds) {
-		return cartService.removeItems(id, itemIds);
+		try {
+			return cartService.removeItems(id, itemIds);
+		} catch (Exception e) {
+			System.out.println("Unable to remove items for user: " + id);
+			return new Cart();
+		}
 	}
 
 	// GET Cart
 	@ResponseBody
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	Cart cartContents(@PathVariable Long id) {
-		return cartService.getCart(id);
+		try {
+			return cartService.getCart(id);
+		} catch (Exception e) {
+			System.out.println("Unable to get cart " + id);
+			return new Cart();
+		}
 	}
 }

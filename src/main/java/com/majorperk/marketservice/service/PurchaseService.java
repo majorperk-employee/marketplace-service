@@ -48,4 +48,8 @@ public class PurchaseService {
 
 		return purchasedItemIds;
 	}
+
+	public List<Purchase> getPurchases(Long userId) {
+		return new ArrayList<Purchase>();
+	}
 }
