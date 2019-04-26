@@ -51,4 +51,8 @@ public class RewardItemMeta {
     public void setSelected(Integer selected) {
         this.selected = selected;
     }
+    
+    public void incrementSelected() {
+        this.selected += 1;
+    }
 }

@@ -25,7 +25,11 @@ public class PurchaseService {
 		Purchase purchase = new Purchase();
 		
 		List<RewardItem> itemsToPurchase = rewardRepository.findAllById(rewardItemIds);
-		itemsToPurchase.forEach(item -> purchase.addPurchaseItem(item));
+		itemsToPurchase.forEach(item -> {
+			item.getMeta().incrementPurchased();
+			rewardRepository.save(item);
+			purchase.addPurchaseItem(item);
+		});
 		account.addPurchase(purchase);
 		
 		accountRepository.save(account);
