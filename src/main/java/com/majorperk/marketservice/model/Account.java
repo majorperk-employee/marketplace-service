@@ -233,6 +233,7 @@ public class Account {
 	}
 	
 	public void addPurchase(Purchase purchase) {
+		this.points -= purchase.cost;
 		this.purchases.add(purchase);
 	}
 }

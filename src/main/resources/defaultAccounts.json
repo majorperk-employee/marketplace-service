@@ -13,32 +13,11 @@
     "email": "hzealander0@go.com",
     "zip": "97312",
     "picture": "data:image/png;base64,iVBORw0KGgoAAAANS",
-    "points": "52",
+    "points": "50000",
     "totaldays": 583,
     "ontimedays": 424,
     "daystreak": 16,
-    "cart": {      
-        "id": 3,
-        "items": [
-          {
-            "name": "$100 Airline Voucher",
-            "price": 5000,
-            "type": "Gift Card",
-            "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
-            "tags": [
-              "Voucher",
-              "Travel",
-              "Flight",
-              "Vacation Packages"
-            ],
-            "imageURL": "/assets/img/rewards/airline.jpg",
-            "meta": {
-              "purchased": 1,
-              "selected": 1
-            }
-          }
-        ]
-      }
+    "cart": {}
     },
     {
       "id": 2,
@@ -54,66 +33,11 @@
       "email": "seagles1@gravatar.com",
       "zip": "77218",
       "picture": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/",
-      "points": "388",
+      "points": "1000",
       "totaldays": 430,
       "ontimedays": 393,
       "daystreak": 23,
-      "cart": {
-          "id": 2,
-          "items": [
-            {
-              "name": "$5 Amazon",
-              "price": 250,
-              "type": "Gift Card",
-              "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
-              "tags": [
-                "Gift Card",
-                "Gift Cards",
-                "Shopping",
-                "Amazon"
-              ],
-              "imageURL": "/assets/img/rewards/amazon.jpeg",
-              "meta": {
-                "purchased": 1,
-                "selected": 1
-              }
-            },
-            {
-              "name": "$10 Amazon",
-              "price": 500,
-              "type": "Gift Card",
-              "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
-              "tags": [
-                "Gift Card",
-                "Gift Cards",
-                "Shopping",
-                "Amazon"
-              ],
-              "imageURL": "/assets/img/rewards/amazon.jpeg",
-              "meta": {
-                "purchased": 1,
-                "selected": 1
-              }
-            },
-            {
-              "name": "$20 Amazon",
-              "price": 1000,
-              "type": "Gift Card",
-              "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
-              "tags": [
-                "Gift Card",
-                "Gift Cards",
-                "Shopping",
-                "Amazon"
-              ],
-              "imageURL": "/assets/img/rewards/amazon.jpeg",
-              "meta": {
-                "purchased": 1,
-                "selected": 1
-              }
-            }
-          ]
-        }
+      "cart": {}
     },
     {
       "id": 1,
@@ -133,46 +57,6 @@
       "totaldays": 293,
       "ontimedays": 201,
       "daystreak": 23,
-      "cart": {
-          "id": 1,
-          "items": [
-            {
-              "name": "Weekend Getaway - New York",
-              "price": 60000,
-              "type": "Vacation",
-              "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
-              "tags": [
-                "Vacation",
-                "Travel",
-                "New York",
-                "Flight",
-                "Vacation Packages"
-              ],
-              "imageURL": "/assets/img/rewards/weekend1.jpg",
-              "meta": {
-                "purchased": 1,
-                "selected": 1
-              }
-            },
-            {
-              "name": "Weekend Getaway - Minneapolis",
-              "price": 60000,
-              "type": "Vacation",
-              "description": "Lorem ipsum dolor sit amet, ne vis quem graeco consetetur, id eam doming admodum epicurei. ",
-              "tags": [
-                "Vacation",
-                "Travel",
-                "Minneapolis",
-                "Flight",
-                "Vacation Packages"
-              ],
-              "imageURL": "/assets/img/rewards/weekend2.jpg",
-              "meta": {
-                "purchased": 1,
-                "selected": 1
-              }
-            }
-          ]
-        }
+      "cart": {}
     }
   ]

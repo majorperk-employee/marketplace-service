@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.model.Cart;
 import com.majorperk.marketservice.model.RewardItem;
+import com.majorperk.marketservice.repository.AccountRepository;
 import com.majorperk.marketservice.repository.CartRepository;
 import com.majorperk.marketservice.repository.RewardRepository;
 
@@ -18,10 +20,17 @@ public class CartService {
 	@Autowired
 	private RewardRepository rewardRepository;
 
+	@Autowired
+	private AccountRepository accountRepository;
+
 	Integer cartCost = 0;
 
-	public Cart addItem(Long cartId, Long itemId) {
-		Cart cart = cartRepository.findById(cartId).get();
+	public Cart addItem(Long userId, Long itemId) {
+
+		Long cartId = accountRepository.findById(userId).get().getCart().getId();
+		
+		Cart cart = cartRepository.findById(cartId).get();		
+
 		RewardItem itemToAdd = rewardRepository.findById(itemId).get();
 		
 		cart.getItems().add(itemToAdd);
@@ -34,11 +43,16 @@ public class CartService {
 		return cartRepository.save(cart);
 	}
 	
-	public Cart removeItems(Long cartId, List<Long> rewardItemIds) {
-		Cart cart = cartRepository.findById(cartId).get();				
-		List<RewardItem> itemsToRemove = rewardRepository.findAllById(rewardItemIds);
+	public Cart removeItems(Long userId, List<Long> itemIDsToRemove) {
+
+		Long cartId = accountRepository.findById(userId).get().getCart().getId();
 		
+		Cart cart = cartRepository.findById(cartId).get();				
+		
+		List<RewardItem> itemsToRemove = rewardRepository.findAllById(itemIDsToRemove);
+
 		cart.getItems().removeAll(itemsToRemove);		
+		
 		cart.setCost(updateCost(cart));
 
 		return cartRepository.save(cart);
@@ -54,16 +68,26 @@ public class CartService {
 		return cartCost;
 	}
 
-	public List<RewardItem> getContents(Long cartId) {
+	public List<RewardItem> getContents(Long userId) {
 		
-		Cart cart = cartRepository.findById(cartId).get();
+		Long cartId = accountRepository.findById(userId).get().getCart().getId();
+		
+		Cart cart = cartRepository.findById(cartId).get();		
 
 		cart.setCost(updateCost(cart));
 
 		return cart.getItems();
 	}
 	
-	public Cart getCart(Long cartId) {
+	public Cart getCart(Long userId) {
+
+		Long cartId = accountRepository.findById(userId).get().getCart().getId();
+
 		return cartRepository.findById(cartId).get();
+	}
+
+	public Cart getCartByUser(Long userId) {
+		Account account = accountRepository.findById(userId).get();
+		return cartRepository.findById(account.getCart().getId()).get();
 	}
 }

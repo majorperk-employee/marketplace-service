@@ -40,7 +40,7 @@ public class AccountController {
     }
     
     @GetMapping("/getById")
-    public Optional<Account> getAccountById(@RequestParam(value = "id", required = true) Long id) {
-		return accountRepository.findById(id);
+    public Account getAccountById(@RequestParam(value = "id", required = true) Long id) {
+		return accountRepository.findById(id).get();
     }
 }

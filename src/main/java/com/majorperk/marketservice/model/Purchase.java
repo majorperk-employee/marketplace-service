@@ -18,6 +18,8 @@ public class Purchase extends AuditModel {
 	@ManyToMany(cascade = CascadeType.ALL)
 	List<RewardItem> items = new ArrayList<RewardItem>();
 
+	Integer cost = 0;
+
 	public Purchase() {
 		super();
 	}
@@ -41,4 +43,19 @@ public class Purchase extends AuditModel {
 	public void addPurchaseItem(RewardItem item) {
 		this.items.add(item);
 	}
+
+	/**
+	 * @return the cost
+	 */
+	public Integer getCost() {
+		return cost;
+	}
+
+	/**
+	 * @param cost the cost to set
+	 */
+	public void setCost(Integer cost) {
+		this.cost = cost;
+	}
+
 }

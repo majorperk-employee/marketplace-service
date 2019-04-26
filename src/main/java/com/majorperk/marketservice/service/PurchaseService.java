@@ -1,15 +1,16 @@
 package com.majorperk.marketservice.service;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.model.Purchase;
 import com.majorperk.marketservice.model.RewardItem;
 import com.majorperk.marketservice.repository.AccountRepository;
 import com.majorperk.marketservice.repository.RewardRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class PurchaseService {
@@ -20,18 +21,31 @@ public class PurchaseService {
 	@Autowired
 	private RewardRepository rewardRepository;
 	
-	public void purchaseItems(Long userId, List<Long> rewardItemIds) {		
+	public List<Long> purchaseItems(Long userId) {		
 		Account account = accountRepository.findById(userId).get();
+
+		if (account.getPoints() < account.getCart().getCost() ) {
+			System.out.println(account.getId() + " insufficient funds.");
+			return new ArrayList<>();
+		}
+
 		Purchase purchase = new Purchase();
 		
-		List<RewardItem> itemsToPurchase = rewardRepository.findAllById(rewardItemIds);
+		List<RewardItem> itemsToPurchase = account.getCart().getItems();
+		List<Long> purchasedItemIds = new ArrayList<Long>();
+		
 		itemsToPurchase.forEach(item -> {
 			item.getMeta().incrementPurchased();
 			rewardRepository.save(item);
+			purchase.setCost(purchase.getCost() + item.getPrice());
 			purchase.addPurchaseItem(item);
+			purchasedItemIds.add(item.getId());
 		});
+
 		account.addPurchase(purchase);
 		
 		accountRepository.save(account);
+
+		return purchasedItemIds;
 	}
 }
