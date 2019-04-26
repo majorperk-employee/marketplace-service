@@ -27,5 +27,7 @@ public class PurchaseService {
 		List<RewardItem> itemsToPurchase = rewardRepository.findAllById(rewardItemIds);
 		itemsToPurchase.forEach(item -> purchase.addPurchaseItem(item));
 		account.addPurchase(purchase);
+		
+		accountRepository.save(account);
 	}
 }

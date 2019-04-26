@@ -38,8 +38,7 @@ public class CartService {
 		Cart cart = cartRepository.findById(cartId).get();				
 		List<RewardItem> itemsToRemove = rewardRepository.findAllById(rewardItemIds);
 		
-		cart.getItems().removeAll(itemsToRemove);
-		
+		cart.getItems().removeAll(itemsToRemove);		
 		cart.setCost(updateCost(cart));
 
 		return cartRepository.save(cart);
