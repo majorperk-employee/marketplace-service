@@ -48,7 +48,6 @@ public class CartService {
 		cartCost = 0;
 		
 		cart.getItems().forEach(item -> {
-			System.out.println(item.getId());
 			cartCost += item.getPrice();
 		});
 
