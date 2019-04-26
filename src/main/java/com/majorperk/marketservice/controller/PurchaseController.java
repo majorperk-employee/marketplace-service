@@ -26,12 +26,11 @@ class PurchaseController {
 
 	// Checkout
 	@ResponseBody
-	@RequestMapping(value = "/checkout", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/checkout", method = RequestMethod.POST, produces = "application/json")
 	Cart checkout(@RequestParam(value = "userId", required = true) Long userId,
 				  @RequestParam(value = "cartId", required = true) Long cartId,
-				  @RequestBody List<Long> rewardItemIds) {
-		
-		purchaseService.purchaseItems(userId, rewardItemIds);		
-		return cartService.removeItems(userId, rewardItemIds);
+				  @RequestBody List<Long> rewardItemIds) {		
+		purchaseService.purchaseItems(userId, rewardItemIds);
+		return cartService.removeItems(cartId, rewardItemIds);
 	}
 }

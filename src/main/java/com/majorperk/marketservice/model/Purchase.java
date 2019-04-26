@@ -1,5 +1,6 @@
 package com.majorperk.marketservice.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,7 +16,7 @@ public class Purchase extends AuditModel {
 	Long id;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	List<RewardItem> items;
+	List<RewardItem> items = new ArrayList<RewardItem>();
 
 	public Purchase() {
 		super();
