@@ -10,17 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Cart {
+public class Purchase extends AuditModel {
 	@Id
 	@GeneratedValue
 	Long id;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	List<RewardItem> items = new ArrayList<RewardItem>();
-	
-	int cost;
 
-	public Cart() {
+	public Purchase() {
 		super();
 	}
 
@@ -40,15 +38,7 @@ public class Cart {
 		this.items = items;
 	}
 
-	public void addCartItem(RewardItem item) {
+	public void addPurchaseItem(RewardItem item) {
 		this.items.add(item);
-	}
-
-	public int getCost() {
-		return cost;
-	}
-
-	public void setCost(int cost) {
-		this.cost = cost;
 	}
 }
