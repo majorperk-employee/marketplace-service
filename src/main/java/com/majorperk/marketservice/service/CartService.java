@@ -18,25 +18,18 @@ public class CartService {
 	@Autowired
 	private RewardRepository rewardRepository;
 
+	Integer cartCost = 0;
+
 	public Cart addItem(Long cartId, Long itemId) {
 		Cart cart = cartRepository.findById(cartId).get();
 		RewardItem itemToAdd = rewardRepository.findById(itemId).get();
 		
 		cart.getItems().add(itemToAdd);
-		cart.updateTotalCost(itemToAdd.getPrice());
+		
+		cart.setCost(updateCost(cart));
 		
 		itemToAdd.getMeta().incrementPurchased();
 		rewardRepository.save(itemToAdd);
-		
-		return cartRepository.save(cart);
-	}
-
-	public Cart removeItem(Long cartId, Long itemId) {
-		Cart cart = cartRepository.findById(cartId).get();
-		RewardItem itemToRemove = rewardRepository.findById(itemId).get();
-		
-		cart.getItems().remove(itemToRemove);
-		cart.updateTotalCost(-itemToRemove.getPrice());
 		
 		return cartRepository.save(cart);
 	}
@@ -46,13 +39,29 @@ public class CartService {
 		List<RewardItem> itemsToRemove = rewardRepository.findAllById(rewardItemIds);
 		
 		cart.getItems().removeAll(itemsToRemove);
-		itemsToRemove.forEach(item -> cart.updateTotalCost(-item.getPrice()));
 		
+		cart.setCost(updateCost(cart));
+
 		return cartRepository.save(cart);
 	}
 
+	private Integer updateCost(Cart cart) {
+		cartCost = 0;
+		
+		cart.getItems().forEach(item -> {
+			System.out.println(item.getId());
+			cartCost += item.getPrice();
+		});
+
+		return cartCost;
+	}
+
 	public List<RewardItem> getContents(Long cartId) {
+		
 		Cart cart = cartRepository.findById(cartId).get();
+
+		cart.setCost(updateCost(cart));
+
 		return cart.getItems();
 	}
 	
