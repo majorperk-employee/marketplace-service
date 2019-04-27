@@ -2,11 +2,13 @@ package com.majorperk.marketservice.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import com.majorperk.marketservice.model.reward.Brand;
+import com.majorperk.marketservice.model.reward.SmallBrand;
 import com.majorperk.marketservice.repository.BrandRepository;
 import com.majorperk.marketservice.service.Loader;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -27,12 +30,13 @@ public class BrandController {
     private BrandRepository brandRepository;
 
     @GetMapping("/all")
-    public @Valid List<Brand> getAllBrands() {
+    public @Valid List<SmallBrand> getAllBrands(@RequestParam(value = "verbose", defaultValue="false", required = false) Boolean verbose) {
         try {
-            return brandRepository.findAll();
+            // return brandRepository.findAll();
+            return brandRepository.findAllCondensed();
         } catch (Exception e) {
-            System.out.println("Unable to list all rewards items. Please verify database.");
-            return new ArrayList<Brand>();
+            System.out.println("Unable to list all brands. Please verify database :::" + e);
+            return null;
         }
     }
 

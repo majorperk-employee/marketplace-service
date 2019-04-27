@@ -6,7 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
+@Getter 
+@Setter 
+@NoArgsConstructor
 public class RewardItemMeta {
 
     
@@ -28,59 +35,4 @@ public class RewardItemMeta {
 		this.purchased += 1;
 	}
 
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the purchased
-     */
-    public Integer getPurchased() {
-        return purchased;
-    }
-
-    /**
-     * @param purchased the purchased to set
-     */
-    public void setPurchased(Integer purchased) {
-        this.purchased = purchased;
-    }
-
-    /**
-     * @return the selected
-     */
-    public Integer getSelected() {
-        return selected;
-    }
-
-    /**
-     * @param selected the selected to set
-     */
-    public void setSelected(Integer selected) {
-        this.selected = selected;
-    }
-
-    /**
-     * @return the rewardItem
-     */
-    public RewardItem getRewardItem() {
-        return rewardItem;
-    }
-
-    /**
-     * @param rewardItem the rewardItem to set
-     */
-    public void setRewardItem(RewardItem rewardItem) {
-        this.rewardItem = rewardItem;
-    }
 }
