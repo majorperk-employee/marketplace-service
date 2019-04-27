@@ -28,7 +28,7 @@ public class Constants {
     public static final String BRAND_OBJECT_ID = "id";
     public static final String BRAND_OBJECT_KEY = "brandKey";
     public static final String BRAND_OBJECT_NAME = "brandName";
-    public static final String BRAND_OBJECT_DES_SHORT = "shortDescription";
+    public static final String BRAND_OBJECT_DESC_SHORT = "shortDescription";
     public static final String BRAND_OBJECT_STATUS = "status";
     public static final String BRAND_OBJECT_IMG_URLS = "imageUrls";
 
