@@ -10,19 +10,6 @@ import com.majorperk.marketservice.model.Tier;
 @Service
 public class TierService {
 	
-	/*[Employee]
-			[Silver] if > 60 days worked || > 85% on time
-			[Gold] if > 90 days worked || > 90% on time
-			[Platinum] if > 120 days worked || > 95% on time
-
-			Input: User (totalDaysWorked, OnTimePercentage[tdw/totaldays])
-
-			Return Tier Object:
-
-			Current Tier,
-			Next Tier,
-			Goals: (OTP, TDW)*/
-	
 	public final String PLATINUM = "Platinum";
 	public final String GOLD = "Gold";	
 	public final String SILVER = "Silver";
@@ -50,11 +37,7 @@ public class TierService {
 		double onTimePercent = account.getOntimedays() / totalDays;
 		Tier tier = account.getTier();				
 		
-		// Should this be on time days (or maybe an && instead of ||) worked rather than just total days?
-		// Otherwise all they need to do is work there for 4 months & they're
-		// platinum, no matter how punctual they are.
 		if(totalDays >= PLATINUM_DAYS && onTimePercent >= PLATINUM_PERCENT) {
-			// What happens if they've reached max tier?
 			tier.setNextTier(PLATINUM);
 			tier.setCurrentTier(PLATINUM);
 			
@@ -79,8 +62,7 @@ public class TierService {
 			
 			tier.setOnTimePercentGoal(GOLD_PERCENT);
 			tier.setTotalDaysGoal(GOLD_DAYS);
-		}
-		
+		}		
 		return tier;
 	}
 
