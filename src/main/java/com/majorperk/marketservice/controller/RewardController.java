@@ -7,7 +7,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.majorperk.marketservice.model.Category;
-import com.majorperk.marketservice.model.RewardItem;
 import com.majorperk.marketservice.repository.CategoryRepository;
 import com.majorperk.marketservice.repository.RewardRepository;
 import com.majorperk.marketservice.service.Loader;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,37 +29,37 @@ public class RewardController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/all")
-    public @Valid List<RewardItem> getRewardItems() {
-        try {
-            return rewardRepository.findAll();
-        } catch (Exception e) {
-            System.out.println("Unable to list all rewards items. Please verify database.");
-            return new ArrayList<RewardItem>();
-        }
-    }
+    // @GetMapping("/all")
+    // public @Valid List<Brand> getAllBrands() {
+    //     try {
+    //         return rewardRepository.findAll();
+    //     } catch (Exception e) {
+    //         System.out.println("Unable to list all rewards items. Please verify database.");
+    //         return new ArrayList<Brand>();
+    //     }
+    // }
 
 
-    @PostMapping("/customLoad")
-    public @Valid List<RewardItem> createCustomRewardItems(@Valid @RequestBody List<RewardItem> rewardItem) {
-        try {
-            return rewardRepository.saveAll(rewardItem);
-        } catch (Exception e) {
-            System.out.println("Unable to load custom objects to database.");
-            return new ArrayList<RewardItem>();
-        }
-    }
+    // @PostMapping("/customLoad")
+    // public @Valid List<Brand> createCustomRewardItems(@Valid @RequestBody List<Brand> rewardItem) {
+    //     try {
+    //         return rewardRepository.saveAll(rewardItem);
+    //     } catch (Exception e) {
+    //         System.out.println("Unable to load custom objects to database.");
+    //         return new ArrayList<Brand>();
+    //     }
+    // }
     
-    @PostMapping("/defaultLoad")
-    public @Valid List<RewardItem> createDefaultRewardItems() throws IOException {
-        try {
-            Loader rewardLoader = new Loader();
-            return rewardRepository.saveAll(rewardLoader.createRewardsList(rewardLoader.readJSON("./src/main/resources/defaultRewards.json")));
-        } catch (Exception e) {
-            System.out.println("Unable to load from JSON.");
-            return new ArrayList<RewardItem>();
-        }
-    }
+    // @PostMapping("/defaultLoad")
+    // public @Valid List<Brand> createDefaultRewardItems() throws IOException {
+    //     try {
+    //         Loader rewardLoader = new Loader();
+    //         return rewardRepository.saveAll(rewardLoader.createRewardsList(rewardLoader.readJSON("./src/main/resources/defaultRewards.json")));
+    //     } catch (Exception e) {
+    //         System.out.println("Unable to load from JSON.");
+    //         return new ArrayList<Brand>();
+    //     }
+    // }
     
     @GetMapping("/getCategories")
     public @Valid List<Category> getCategories() {

@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.model.Purchase;
-import com.majorperk.marketservice.model.RewardItem;
+import com.majorperk.marketservice.model.reward.RewardItem;
 import com.majorperk.marketservice.repository.AccountRepository;
 import com.majorperk.marketservice.repository.RewardRepository;
 
