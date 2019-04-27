@@ -53,16 +53,16 @@ public class TierService {
 		// Should this be on time days (or maybe an && instead of ||) worked rather than just total days?
 		// Otherwise all they need to do is work there for 4 months & they're
 		// platinum, no matter how punctual they are.
-		if(totalDays > PLATINUM_DAYS || onTimePercent > PLATINUM_PERCENT) {
+		if(totalDays > PLATINUM_DAYS && onTimePercent > PLATINUM_PERCENT) {
 			// What happens if they've reached max tier?
 			tier.setNextTier(PLATINUM);
 			tier.setCurrentTier(PLATINUM);
 			// Need to populate Goals. Is that total days worked - next tier's days?
 			// and current ontime percent - required ontime %?
-		} else if(totalDays > GOLD_DAYS || onTimePercent > GOLD_PERCENT) {
+		} else if(totalDays > GOLD_DAYS && onTimePercent > GOLD_PERCENT) {
 			tier.setNextTier(PLATINUM);
 			tier.setCurrentTier(GOLD);
-		} else if(totalDays > SILVER_DAYS || onTimePercent > SILVER_PERCENT) {
+		} else if(totalDays > SILVER_DAYS && onTimePercent > SILVER_PERCENT) {
 			tier.setNextTier(GOLD);
 			tier.setCurrentTier(SILVER);
 		} else {
