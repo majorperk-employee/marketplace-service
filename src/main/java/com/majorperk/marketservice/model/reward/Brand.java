@@ -13,8 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Entity
 public class Brand {
@@ -41,17 +39,18 @@ public class Brand {
     @Column(length=10485760)
     String description;
 
-    @JsonIgnore
-    String imageUrls;
+    @OneToOne(cascade = CascadeType.ALL)
+    ImageUrls imageUrls;
 
+    
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     List<RewardItem> items;
 
     @OneToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "brand_requirement", 
-		joinColumns = { @JoinColumn(name = "brand_id", referencedColumnName = "id")}, 
-		inverseJoinColumns = { @JoinColumn(name = "requirements_id", referencedColumnName = "id") })
     Requirements brandRequirements;
+	// @JoinTable(name = "brand_requirement", 
+	// 	joinColumns = { @JoinColumn(name = "brand_id", referencedColumnName = "id")}, 
+	// 	inverseJoinColumns = { @JoinColumn(name = "requirements_id", referencedColumnName = "id") })
 
     /**
      * @return the id
@@ -180,20 +179,6 @@ public class Brand {
     }
 
     /**
-     * @return the imageUrls
-     */
-    public String getImageUrls() {
-        return imageUrls;
-    }
-
-    /**
-     * @param imageUrls the imageUrls to set
-     */
-    public void setImageUrl(String imageUrls) {
-        this.imageUrls = imageUrls;
-    }
-
-    /**
      * @return the status
      */
     public String getStatus() {
@@ -234,4 +219,19 @@ public class Brand {
     public void setBrandRequirements(Requirements brandRequirements) {
         this.brandRequirements = brandRequirements;
     }
+
+    /**
+     * @return the imageUrls
+     */
+    public ImageUrls getImageUrls() {
+        return imageUrls;
+    }
+
+    /**
+     * @param imageUrls the imageUrls to set
+     */
+    public void setImageUrls(ImageUrls imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+   
 }

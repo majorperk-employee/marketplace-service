@@ -28,7 +28,7 @@ public class Loader {
 		List<Brand> rewardItems = new ArrayList<Brand>();
 		ObjectMapper jsonMapper = new ObjectMapper();
 		try {
-			rewardItems = jsonMapper.readValue(jsonRewardList, new TypeReference<List<Brand>>() { });
+			rewardItems = jsonMapper.readValue(jsonRewardList, new TypeReference<List<Brand>>(){});
 		} catch (JsonProcessingException e) {
 			// Definitely a hand written auto catch block.
 			e.printStackTrace();

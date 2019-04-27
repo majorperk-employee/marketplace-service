@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;;
 
@@ -38,12 +37,9 @@ public class RewardItem {
 	Integer maxValue;
 	Boolean isWholeAmountValueRequired;
 
-
-	
 	@ManyToOne
     @JoinColumn
 	Brand brand;
-
 
 	Integer price;
 	
@@ -52,10 +48,10 @@ public class RewardItem {
 	ArrayList<String> tags;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "item_meta", 
-		joinColumns = { @JoinColumn(name = "rewardItem_id", referencedColumnName = "id") }, 
-		inverseJoinColumns = { @JoinColumn(name = "metaData_id", referencedColumnName = "id") })
 	RewardItemMeta meta;
+	// @JoinTable(name = "item_meta", 
+	// 	joinColumns = { @JoinColumn(name = "rewardItem_id", referencedColumnName = "id") }, 
+	// 	inverseJoinColumns = { @JoinColumn(name = "metaData_id", referencedColumnName = "id") })
 
 	/**
 	 * @return the id
