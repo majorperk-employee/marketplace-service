@@ -1,11 +1,8 @@
 package com.majorperk.marketservice.controller;
 
-import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.model.Tier;
 import com.majorperk.marketservice.repository.AccountRepository;
 import com.majorperk.marketservice.service.TierService;
-
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
