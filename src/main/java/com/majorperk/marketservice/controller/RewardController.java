@@ -36,7 +36,7 @@ public class RewardController {
         try {
             return rewardRepository.findAll();
         } catch (Exception e) {
-            System.out.println("Unable to list all rewards items. Please verify database.");
+            System.out.println("Unable to list all rewards items. Please verify database :::" + e);
             return new ArrayList<RewardItem>();
         }
     }

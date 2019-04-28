@@ -8,7 +8,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.majorperk.marketservice.model.reward.Brand;
-import com.majorperk.marketservice.model.reward.SmallBrand;
 import com.majorperk.marketservice.repository.BrandRepository;
 import com.majorperk.marketservice.service.Loader;
 

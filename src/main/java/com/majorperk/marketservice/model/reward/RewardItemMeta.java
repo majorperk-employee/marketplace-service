@@ -6,10 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import lombok.NoArgsConstructor;
-
 @Entity
-@NoArgsConstructor
 public class RewardItemMeta {
 
     
@@ -23,6 +20,12 @@ public class RewardItemMeta {
     @OneToOne(mappedBy = "meta")
     private RewardItem rewardItem;
     
+
+    public RewardItemMeta(Integer purchased,Integer selected) {
+        this.purchased = purchased;
+        this.selected = selected;
+    }
+
     public void incrementSelected() {
         this.selected += 1;
     }

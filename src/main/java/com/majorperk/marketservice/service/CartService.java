@@ -36,8 +36,10 @@ public class CartService {
 		cart.getItems().add(itemToAdd);
 		
 		cart.setCost(updateCost(cart));
-		
+
 		itemToAdd.getMeta().incrementSelected();
+
+
 		rewardRepository.save(itemToAdd);
 		
 		return cartRepository.save(cart);
@@ -60,11 +62,9 @@ public class CartService {
 
 	private Integer updateCost(Cart cart) {
 		cartCost = 0;
-		
 		cart.getItems().forEach(item -> {
 			cartCost += item.getPrice();
 		});
-
 		return cartCost;
 	}
 

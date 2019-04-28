@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import static com.majorperk.marketservice.utils.Constants.USD_PTS_CONVERSION;
+
 import lombok.NoArgsConstructor;;
 
 
@@ -48,11 +50,14 @@ public class RewardItem {
 	RewardItemMeta meta;
 
 	public RewardItemMeta getMeta() {
+		if (this.meta == null) {
+			return new RewardItemMeta(0,0);
+		}
 		return this.meta;
 	}
 
 	public Integer getPrice() {
-		return this.price;
+		return this.faceValue * USD_PTS_CONVERSION;
 	}
 
 	public Long getId() {
