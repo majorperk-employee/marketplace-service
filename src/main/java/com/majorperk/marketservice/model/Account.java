@@ -23,13 +23,15 @@ public class Account {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Purchase> purchases = new ArrayList<Purchase>();
+
+	@OneToOne(cascade= CascadeType.ALL)
+	private Tier tier;
 	
 	private String username;
 	private String password;
 	private String firstName;
 	private String lastName;
-	private String job;	
-	private String tier;
+	private String job;
 	private String address;
 	private String city;
 	private String state;
@@ -38,7 +40,7 @@ public class Account {
 	private String picture;
 	private Integer points;
 	private Integer totaldays;
-	private Integer ontimedays;
+	private double ontimedays;
 	private Integer daystreak;
 	
 
@@ -55,7 +57,8 @@ public class Account {
 	}
 
 	public Account(String username, String password, String firstName, String lastName, String token, String job,
-			String tier, String address, String city, String state, Integer zip, String picture, Integer points, Integer totaldays, Integer ontimedays, Integer daystreak) {
+			Tier tier, String address, String city, String state, Integer zip, String picture, Integer points, 
+			Integer totaldays, double ontimedays, Integer daystreak) {
 
 		this.username = username;
 		this.password = password;
@@ -112,11 +115,11 @@ public class Account {
 		this.job = job;
 	}
 
-	public String getTier() {
+	public Tier getTier() {
 		return tier;
 	}
 
-	public void setTier(String tier) {
+	public void setTier(Tier tier) {
 		this.tier = tier;
 	}
 
@@ -176,11 +179,11 @@ public class Account {
 		this.totaldays = totaldays;
 	}
 
-	public Integer getOntimedays() {
+	public double getOntimedays() {
 		return ontimedays;
 	}
 
-	public void setOntimedays(Integer ontimedays) {
+	public void setOntimedays(double ontimedays) {
 		this.ontimedays = ontimedays;
 	}
 
