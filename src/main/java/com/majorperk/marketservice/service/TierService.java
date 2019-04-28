@@ -2,13 +2,18 @@ package com.majorperk.marketservice.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.model.Tier;
+import com.majorperk.marketservice.repository.AccountRepository;
 
 @Service
 public class TierService {
+	
+	@Autowired
+	private AccountRepository accountRepository;
 	
 	public final String PLATINUM = "Platinum";
 	public final String GOLD = "Gold";	
@@ -28,29 +33,29 @@ public class TierService {
 			account.setTier(updateTier(account));
 		});
 		
-		return accountsToUpdate;		
+		return accountRepository.saveAll(accountsToUpdate);		
 	}
 
 	private Tier updateTier(Account account) {
 		
-		int totalDays = account.getTotaldays();
+		double totalDays = account.getTotaldays();
+		double onTimeDays = account.getOntimedays();
 		double onTimePercent = account.getOntimedays() / totalDays;
 		Tier tier = account.getTier();				
 		
-		if(totalDays >= PLATINUM_DAYS && onTimePercent >= PLATINUM_PERCENT) {
+		if(onTimeDays >= PLATINUM_DAYS && onTimePercent >= PLATINUM_PERCENT) {
 			tier.setNextTier(PLATINUM);
 			tier.setCurrentTier(PLATINUM);
 			
 			tier.setOnTimePercentGoal(PLATINUM_PERCENT);
 			tier.setTotalDaysGoal(PLATINUM_DAYS);
-		} else if(totalDays >= GOLD_DAYS && onTimePercent >= GOLD_PERCENT) {
+		} else if(onTimeDays >= GOLD_DAYS && onTimePercent >= GOLD_PERCENT) {
 			tier.setNextTier(PLATINUM);
 			tier.setCurrentTier(GOLD);
 			
 			tier.setOnTimePercentGoal(PLATINUM_PERCENT);
-			tier.setTotalDaysGoal(PLATINUM_DAYS);
-			
-		} else if(totalDays >= SILVER_DAYS && onTimePercent >= SILVER_PERCENT) {
+			tier.setTotalDaysGoal(PLATINUM_DAYS);			
+		} else if(onTimeDays >= SILVER_DAYS && onTimePercent >= SILVER_PERCENT) {
 			tier.setNextTier(GOLD);
 			tier.setCurrentTier(SILVER);
 			
@@ -60,9 +65,9 @@ public class TierService {
 			tier.setNextTier(SILVER);
 			tier.setCurrentTier(EMPLOYEE);
 			
-			tier.setOnTimePercentGoal(GOLD_PERCENT);
-			tier.setTotalDaysGoal(GOLD_DAYS);
-		}		
+			tier.setOnTimePercentGoal(SILVER_PERCENT);
+			tier.setTotalDaysGoal(SILVER_DAYS);
+		}
 		return tier;
 	}
 
