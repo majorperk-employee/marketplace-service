@@ -29,7 +29,7 @@ class CartController {
 		try {
 			return cartService.addItem(id, itemId);
 		} catch (Exception e) {
-			System.out.println("Unable to add items for user: " + id);
+			System.out.println("Unable to add items for user: " + id + " :::" + e);
 			return new Cart(-1);
 		}
 	}
@@ -41,7 +41,7 @@ class CartController {
 		try {
 			return cartService.removeItems(id, itemIds);
 		} catch (Exception e) {
-			System.out.println("Unable to remove items for user: " + id);
+			System.out.println("Unable to remove items for user: " + id + " :::" + e);
 			return new Cart(-1);
 		}
 	}
@@ -53,7 +53,7 @@ class CartController {
 		try {
 			return cartService.getCart(id);
 		} catch (Exception e) {
-			System.out.println("Unable to get cart for user: " + id);
+			System.out.println("Unable to get cart for user: " + id + " :::" + e);
 			return new Cart(-1);
 		}
 	}

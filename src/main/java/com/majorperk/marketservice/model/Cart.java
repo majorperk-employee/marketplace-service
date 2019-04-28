@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.majorperk.marketservice.model.reward.RewardItem;
+
 @Entity
 public class Cart {
 	@Id

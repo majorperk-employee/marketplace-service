@@ -1,4 +1,4 @@
-package com.majorperk.marketservice.model;
+package com.majorperk.marketservice.model.reward;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +19,34 @@ public class RewardItemMeta {
     
     @OneToOne(mappedBy = "meta")
     private RewardItem rewardItem;
+    
+
+    public RewardItemMeta(Integer purchased,Integer selected) {
+        this.purchased = purchased;
+        this.selected = selected;
+    }
+
+    public void incrementSelected() {
+        this.selected += 1;
+    }
+
+    public void incrementPurchased() {
+        this.purchased += 1;
+	}
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      * @return the purchased
@@ -33,10 +61,6 @@ public class RewardItemMeta {
     public void setPurchased(Integer purchased) {
         this.purchased = purchased;
     }
-    
-	public void incrementPurchased() {
-		this.purchased += 1;
-	}
 
     /**
      * @return the selected
@@ -51,8 +75,19 @@ public class RewardItemMeta {
     public void setSelected(Integer selected) {
         this.selected = selected;
     }
-    
-    public void incrementSelected() {
-        this.selected += 1;
+
+    /**
+     * @return the rewardItem
+     */
+    public RewardItem getRewardItem() {
+        return rewardItem;
     }
+
+    /**
+     * @param rewardItem the rewardItem to set
+     */
+    public void setRewardItem(RewardItem rewardItem) {
+        this.rewardItem = rewardItem;
+    }
+
 }

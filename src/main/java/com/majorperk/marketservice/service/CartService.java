@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.model.Cart;
-import com.majorperk.marketservice.model.RewardItem;
+import com.majorperk.marketservice.model.reward.RewardItem;
 import com.majorperk.marketservice.repository.AccountRepository;
 import com.majorperk.marketservice.repository.CartRepository;
 import com.majorperk.marketservice.repository.RewardRepository;
@@ -36,8 +36,10 @@ public class CartService {
 		cart.getItems().add(itemToAdd);
 		
 		cart.setCost(updateCost(cart));
-		
+
 		itemToAdd.getMeta().incrementSelected();
+
+
 		rewardRepository.save(itemToAdd);
 		
 		return cartRepository.save(cart);
@@ -60,11 +62,9 @@ public class CartService {
 
 	private Integer updateCost(Cart cart) {
 		cartCost = 0;
-		
 		cart.getItems().forEach(item -> {
-			cartCost += item.getPrice();
+			cartCost += item.updatePrice();
 		});
-
 		return cartCost;
 	}
 

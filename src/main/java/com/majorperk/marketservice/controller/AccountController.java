@@ -2,7 +2,6 @@ package com.majorperk.marketservice.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.repository.AccountRepository;

@@ -5,15 +5,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.model.Category;
-import com.majorperk.marketservice.model.RewardItem;
+import com.majorperk.marketservice.model.reward.Brand;
 import com.majorperk.marketservice.utils.ReadJson;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class Loader {
@@ -24,11 +24,11 @@ public class Loader {
 		return readJson.readFileAsString(directory.getAbsolutePath());
 	}
 
-	public List<RewardItem> createRewardsList(String jsonRewardList) throws IOException {
-		List<RewardItem> rewardItems = new ArrayList<RewardItem>();
+	public List<Brand> createRewardsList(String jsonRewardList) throws IOException {
+		List<Brand> rewardItems = new ArrayList<Brand>();
 		ObjectMapper jsonMapper = new ObjectMapper();
 		try {
-			rewardItems = jsonMapper.readValue(jsonRewardList, new TypeReference<List<RewardItem>>() { });
+			rewardItems = jsonMapper.readValue(jsonRewardList, new TypeReference<List<Brand>>(){});
 		} catch (JsonProcessingException e) {
 			// Definitely a hand written auto catch block.
 			e.printStackTrace();

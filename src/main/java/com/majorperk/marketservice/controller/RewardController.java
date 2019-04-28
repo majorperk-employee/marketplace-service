@@ -7,7 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.majorperk.marketservice.model.Category;
-import com.majorperk.marketservice.model.RewardItem;
+import com.majorperk.marketservice.model.reward.RewardItem;
 import com.majorperk.marketservice.repository.CategoryRepository;
 import com.majorperk.marketservice.repository.RewardRepository;
 import com.majorperk.marketservice.service.Loader;
@@ -32,11 +32,11 @@ public class RewardController {
     private CategoryRepository categoryRepository;
 
     @GetMapping("/all")
-    public @Valid List<RewardItem> getRewardItems() {
+    public @Valid List<RewardItem> getAllBrands() {
         try {
             return rewardRepository.findAll();
         } catch (Exception e) {
-            System.out.println("Unable to list all rewards items. Please verify database.");
+            System.out.println("Unable to list all rewards items. Please verify database :::" + e);
             return new ArrayList<RewardItem>();
         }
     }
@@ -48,17 +48,6 @@ public class RewardController {
             return rewardRepository.saveAll(rewardItem);
         } catch (Exception e) {
             System.out.println("Unable to load custom objects to database.");
-            return new ArrayList<RewardItem>();
-        }
-    }
-    
-    @PostMapping("/defaultLoad")
-    public @Valid List<RewardItem> createDefaultRewardItems() throws IOException {
-        try {
-            Loader rewardLoader = new Loader();
-            return rewardRepository.saveAll(rewardLoader.createRewardsList(rewardLoader.readJSON("./src/main/resources/defaultRewards.json")));
-        } catch (Exception e) {
-            System.out.println("Unable to load from JSON.");
             return new ArrayList<RewardItem>();
         }
     }

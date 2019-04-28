@@ -43,8 +43,8 @@ class TierController {
 		  try {
 			  return accountRepository.findById(userId).get().getTier();	  
 		  } catch (Exception e) {
-			  System.out.println();
-			  return new Tier();
+				System.out.println("Unable to complete tier update for " + userId);
+				return new Tier();
 		  }	    
 	  }
 }
