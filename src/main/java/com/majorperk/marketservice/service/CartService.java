@@ -63,7 +63,7 @@ public class CartService {
 	private Integer updateCost(Cart cart) {
 		cartCost = 0;
 		cart.getItems().forEach(item -> {
-			cartCost += item.getPrice();
+			cartCost += item.updatePrice();
 		});
 		return cartCost;
 	}

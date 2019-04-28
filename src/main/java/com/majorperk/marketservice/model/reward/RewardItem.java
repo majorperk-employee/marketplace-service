@@ -1,5 +1,7 @@
 package com.majorperk.marketservice.model.reward;
 
+import static com.majorperk.marketservice.utils.Constants.USD_PTS_CONVERSION;
+
 import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
@@ -10,19 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import static com.majorperk.marketservice.utils.Constants.USD_PTS_CONVERSION;
-
-import lombok.NoArgsConstructor;;
-
-
 @Entity
-@NoArgsConstructor
 public class RewardItem {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-	
+
 	String utid;
 	String rewardName;
 	String currencyCode;
@@ -31,17 +27,17 @@ public class RewardItem {
 	String rewardType;
 	String createdDate;
 	String lastUpdateDate;
-	
-	@Column(length=10485760)
+
+	@Column(length = 10485760)
 	String redemptionInstructions;
-	
+
 	Integer faceValue;
 	Integer minValue;
 	Integer maxValue;
 	Boolean isWholeAmountValueRequired;
 
 	Integer price;
-	
+
 	ArrayList<String> countries;
 	ArrayList<String> credentialTypes;
 	ArrayList<String> tags;
@@ -49,15 +45,20 @@ public class RewardItem {
 	@OneToOne(cascade = CascadeType.ALL)
 	RewardItemMeta meta;
 
+	public Integer updatePrice() {
+		return this.faceValue * USD_PTS_CONVERSION;
+	}
+
 	public RewardItemMeta getMeta() {
 		if (this.meta == null) {
-			return new RewardItemMeta(0,0);
+			System.out.println("Generating Meta for: " + this.utid);
+			return new RewardItemMeta(0, 0);
 		}
 		return this.meta;
 	}
 
 	public Integer getPrice() {
-		return this.faceValue * USD_PTS_CONVERSION;
+		return this.price;
 	}
 
 	public Long getId() {
@@ -308,5 +309,5 @@ public class RewardItem {
 	public void setMeta(RewardItemMeta meta) {
 		this.meta = meta;
 	}
-	
+
 }

@@ -21,7 +21,7 @@ public class PurchaseService {
 	@Autowired
 	private RewardRepository rewardRepository;
 	
-	public List<Long> purchaseItems(Long userId) {		
+	public List<Long> purchaseItems(Long userId) {
 		Account account = accountRepository.findById(userId).get();
 
 		if (account.getPoints() < account.getCart().getCost() ) {
@@ -30,16 +30,25 @@ public class PurchaseService {
 		}
 
 		Purchase purchase = new Purchase();
-		
+
 		List<RewardItem> itemsToPurchase = account.getCart().getItems();
+		
 		List<Long> purchasedItemIds = new ArrayList<Long>();
 		
 		itemsToPurchase.forEach(item -> {
+		
 			item.getMeta().incrementPurchased();
+		
 			rewardRepository.save(item);
-			purchase.setCost(purchase.getCost() + item.getPrice());
+		
+			purchase.setCost(purchase.getCost() + item.updatePrice());
+		
+			item.setPrice(item.updatePrice());
+
 			purchase.addPurchaseItem(item);
+		
 			purchasedItemIds.add(item.getId());
+		
 		});
 
 		account.addPurchase(purchase);

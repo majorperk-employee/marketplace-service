@@ -31,7 +31,7 @@ public class RewardItemMeta {
     }
 
     public void incrementPurchased() {
-		this.purchased += 1;
+        this.purchased += 1;
 	}
 
     /**
