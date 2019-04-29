@@ -38,7 +38,7 @@ public class TierService {
 
 	private Tier updateTier(Account account) {
 		
-		double totalDays = account.getTotaldays();
+		int totalDays = account.getTotaldays();
 		double onTimeDays = account.getOntimedays();
 		double onTimePercent = account.getOntimedays() / totalDays;
 		Tier tier = account.getTier();				
@@ -47,8 +47,8 @@ public class TierService {
 			tier.setNextTier(PLATINUM);
 			tier.setCurrentTier(PLATINUM);
 			
-			tier.setOnTimePercentGoal(PLATINUM_PERCENT);
-			tier.setTotalDaysGoal(PLATINUM_DAYS);
+			tier.setOnTimePercentGoal(onTimePercent);
+			tier.setTotalDaysGoal(totalDays);
 		} else if(onTimeDays >= GOLD_DAYS && onTimePercent >= GOLD_PERCENT) {
 			tier.setNextTier(PLATINUM);
 			tier.setCurrentTier(GOLD);

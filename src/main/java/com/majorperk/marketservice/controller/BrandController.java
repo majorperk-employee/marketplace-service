@@ -7,9 +7,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.majorperk.marketservice.model.Catalog;
 import com.majorperk.marketservice.model.reward.Brand;
 import com.majorperk.marketservice.repository.BrandRepository;
 import com.majorperk.marketservice.service.Loader;
+import com.majorperk.marketservice.service.TangoRewardMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,8 +33,21 @@ public class BrandController {
     @Autowired
     private BrandRepository brandRepository;
 
+    @Autowired
+    private TangoRewardMapper tangoRewardMapper;
+
+    @GetMapping("/catalog")
+    public @Valid List<Brand> getCatalog(@RequestParam(value = "verbose", defaultValue="false", required = false) Boolean verbose) {
+        try {
+            return this.tangoRewardMapper.getCatalog(verbose);
+        } catch (Exception e) {
+            System.out.println("Unable to access TangoCard catalog :::" + e);
+            return null;
+        }
+    }
+
     @GetMapping("/all")
-    public @Valid Collection getAllBrands(@RequestParam(value = "verbose", defaultValue="false", required = false) Boolean verbose) {
+    public @Valid List<?> getAllBrands(@RequestParam(value = "verbose", defaultValue="false", required = false) Boolean verbose) {
         try {
             if (verbose) {
                 return brandRepository.findAll();

@@ -27,6 +27,8 @@ public class Account {
 	@OneToOne(cascade= CascadeType.ALL)
 	private Tier tier;
 	
+	private String phone;
+	private String nickname;
 	private String username;
 	private String password;
 	private String firstName;
@@ -238,5 +240,33 @@ public class Account {
 	public void addPurchase(Purchase purchase) {
 		this.points -= purchase.cost;
 		this.purchases.add(purchase);
+	}
+
+	/**
+	 * @return the phone
+	 */
+	public String getPhone() {
+		return phone;
+	}
+
+	/**
+	 * @param phone the phone to set
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	/**
+	 * @return the nickname
+	 */
+	public String getNickname() {
+		return nickname;
+	}
+
+	/**
+	 * @param nickname the nickname to set
+	 */
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 }
