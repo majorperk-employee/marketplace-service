@@ -71,7 +71,7 @@ public class BrandController {
         }
     }
 
-    @PostMapping("/customLoad")
+    @PostMapping("/load/custom")
     public @Valid List<Brand> createCustomRewardItems(@Valid @RequestBody List<Brand> rewardItem) {
         try {
             return brandRepository.saveAll(rewardItem);
@@ -81,15 +81,27 @@ public class BrandController {
         }
     }
 
-    @PostMapping("/defaultLoad")
-    public @Valid List<Brand> createDefaultRewardItems() throws IOException {
+    @PostMapping("/load/file")
+    public @Valid String loadDefaultRewardItems() throws IOException {
         try {
             Loader rewardLoader = new Loader();
-            return brandRepository.saveAll(rewardLoader.createRewardsList(rewardLoader.readJSON("./src/main/resources/TangoCardRewards.json")));
-            // return rewardRepository.saveAll(rewardLoader.createRewardsList(rewardLoader.readJSON("./src/main/resources/defaultRewards.json")));
+            brandRepository.saveAll(rewardLoader.createRewardsList(rewardLoader.readJSON("./src/main/resources/TangoCardRewards.json")));
+            return  "Successful loading default catalog from JSON";
         } catch (Exception e) {
             System.out.println("Unable to load from JSON.");
-            return new ArrayList<Brand>();
+            return "Unable to load default catalog from JSON";
+        }
+    }
+
+    @PostMapping("/load")
+    public @Valid Object loadCatalog() throws IOException {
+        try {
+            brandRepository.saveAll(this.tangoRewardMapper.getCatalog(false));
+            return "Successful database load from API";
+        } catch (Exception e) {
+            System.out.println("Unable to load API Catalog. Attempting to load defaults ... ");
+            this.loadDefaultRewardItems();
+            return "Unable to load API Catalog. Attempting to load defaults ... ";
         }
     }
 }

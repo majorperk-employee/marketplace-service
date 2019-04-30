@@ -7,10 +7,7 @@ import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.NoArgsConstructor;
-
 @Entity
-@NoArgsConstructor
 public class ImageUrls {
 
     @Id

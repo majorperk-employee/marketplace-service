@@ -7,10 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import lombok.NoArgsConstructor;
-
 @Entity
-@NoArgsConstructor
 public class Requirements {
  
     @Id
