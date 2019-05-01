@@ -31,6 +31,11 @@ public class RewardController {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @GetMapping("/health")
+    public Integer getHealth() {
+        return 200;
+    }
+
     @GetMapping("/all")
     public @Valid List<RewardItem> getAllBrands() {
         try {

@@ -13,6 +13,19 @@ repositories {
 	mavenCentral()
 }
 
+bootJar {
+	baseName = project.name
+	enabled = true
+
+	doLast {
+		copy {
+			from "manifest.yml"
+			into "./build/libs"
+		}
+
+	}
+}
+
 dependencies {
 	implementation 'org.apache.httpcomponents:httpclient:4.5.3'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

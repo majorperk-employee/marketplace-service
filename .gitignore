@@ -19,5 +19,5 @@ src/test/jmeter/jmeter.properties
 src/test/jmeter/service-jmeter-tests.jtl
 */bin/
 */.gradle/
-/application.properties
-application.properties
+/application.yml
+application.yml
