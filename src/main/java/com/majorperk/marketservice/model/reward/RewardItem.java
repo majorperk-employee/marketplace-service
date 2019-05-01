@@ -11,8 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="reward_item")
 public class RewardItem {
 
 	@Id
@@ -44,6 +46,10 @@ public class RewardItem {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	RewardItemMeta meta;
+
+	public RewardItem() {
+		super();
+	}
 
 	public Integer updatePrice() {
 		return this.faceValue * USD_PTS_CONVERSION;

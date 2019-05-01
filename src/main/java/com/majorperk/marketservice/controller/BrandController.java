@@ -74,7 +74,7 @@ public class BrandController {
         try {
             return brandRepository.saveAll(rewardItem);
         } catch (Exception e) {
-            System.out.println("Unable to load custom objects to database.");
+            System.out.println("Unable to load custom objects to database." + e);
             return new ArrayList<Brand>();
         }
     }
@@ -87,7 +87,7 @@ public class BrandController {
             return  "Successful loading default catalog from JSON";
         } catch (Exception e) {
             System.out.println("Unable to load from JSON.");
-            return "Unable to load default catalog from JSON";
+            return "Unable to load default catalog from JSON"  + e;
         }
     }
 
@@ -99,7 +99,7 @@ public class BrandController {
         } catch (Exception e) {
             System.out.println("Unable to load API Catalog. Attempting to load defaults ... ");
             this.loadDefaultRewardItems();
-            return "Unable to load API Catalog. Attempting to load defaults ... ";
+            return "Unable to load API Catalog. Attempting to load defaults ... " + e;
         }
     }
 }

@@ -8,10 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import com.majorperk.marketservice.model.reward.RewardItem;
 
 @Entity
+@Table(name="cart")
 public class Cart {
 	@Id
 	@GeneratedValue
