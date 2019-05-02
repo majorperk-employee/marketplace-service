@@ -1,7 +1,9 @@
 package com.majorperk.marketservice.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,37 +15,58 @@ import javax.persistence.Table;
 public class Category {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+
+	String name;
 	
-	String category;
-	String icon;
-	ArrayList<String> tags;
+	@ElementCollection
+	List<String> brandIds;
 	
 	public Category() {
 		super();
 	}
-	public String getCategory() {
-		return category;
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getIcon() {
-		return icon;
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
 	}
 
-	public void setIcon(String icon) {
-		this.icon = icon;
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public ArrayList<String> getTags() {
-		return tags;
+	/**
+	 * @return the brandIds
+	 */
+	public List<String> getBrandIds() {
+		return brandIds;
 	}
 
-	public void setTags(ArrayList<String> tags) {
-		this.tags = tags;
+	/**
+	 * @param brandIds the brandIds to set
+	 */
+	public void setBrandIds(List<String> brandIds) {
+		this.brandIds = brandIds;
 	}
+
 }

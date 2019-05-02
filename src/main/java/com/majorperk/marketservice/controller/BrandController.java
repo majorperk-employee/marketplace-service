@@ -29,12 +29,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class BrandController {
 
     @Autowired
+    Loader brandLoader;
+
+    @Autowired
     private BrandRepository brandRepository;
 
     @Autowired
     private TangoRewardMapper tangoRewardMapper;
 
-    @GetMapping("/catalog")
+    @GetMapping("/tango/catalog")
     public @Valid List<Brand> getCatalog(@RequestParam(value = "verbose", defaultValue="false", required = false) Boolean verbose) {
         try {
             return this.tangoRewardMapper.getCatalog(verbose);
@@ -44,7 +47,7 @@ public class BrandController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping("/catalog")
     public @Valid List<?> getAllBrands(@RequestParam(value = "verbose", defaultValue="false", required = false) Boolean verbose) {
         try {
             if (verbose) {
@@ -57,9 +60,8 @@ public class BrandController {
         }
     }
 
-    // GET Brand
 	@ResponseBody
-	@RequestMapping(value = "getById/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = "application/json")
     public Brand getBrandById(@PathVariable Long id) {
         try {
             return brandRepository.findById(id).get();
@@ -82,24 +84,24 @@ public class BrandController {
     @PostMapping("/load/file")
     public @Valid String loadDefaultRewardItems() throws IOException {
         try {
-            Loader rewardLoader = new Loader();
-            brandRepository.saveAll(rewardLoader.createRewardsList(rewardLoader.readJSON("./src/main/resources/TangoCardRewards.json")));
-            return  "Successful loading default catalog from JSON";
+            brandRepository.saveAll(brandLoader.getS3DefaultBrands());
+            // brandRepository.saveAll(rewardLoader.createBrandsList(brandLoader.readJSON("./src/main/resources/TangoCardRewards.json")));
+            return  "Successful loading default catalog from S3";
         } catch (Exception e) {
             System.out.println("Unable to load from JSON.");
-            return "Unable to load default catalog from JSON"  + e;
+            return "Unable to load default catalog from S3 "  + e;
         }
     }
 
     @PostMapping("/load")
     public @Valid Object loadCatalog() throws IOException {
         try {
-            brandRepository.saveAll(this.tangoRewardMapper.getCatalog(false));
+            brandRepository.saveAll(this.tangoRewardMapper.getCatalog(true));
             return "Successful database load from API";
         } catch (Exception e) {
             System.out.println("Unable to load API Catalog. Attempting to load defaults ... ");
             this.loadDefaultRewardItems();
-            return "Unable to load API Catalog. Attempting to load defaults ... " + e;
+            return "Unable to load API Catalog. Attempting to load defaults ... ";
         }
     }
 }

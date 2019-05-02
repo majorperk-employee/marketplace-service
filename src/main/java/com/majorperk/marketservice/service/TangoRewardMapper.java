@@ -7,10 +7,12 @@ import com.majorperk.marketservice.model.reward.Brand;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+@PropertySource("classpath:application.yml")
 public class TangoRewardMapper {
 
     @Value("${tangocard.baseUrl}")

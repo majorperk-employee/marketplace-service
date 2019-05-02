@@ -34,25 +34,38 @@ public class AccountController {
   @Autowired
   private AccountRepository accountRepository;
 
+  @Autowired
+  Loader userLoader;
+
+  @GetMapping("/health")
+  public Integer getHealth() {
+    return 200;
+  }
+
   @GetMapping("/all")
   public List<Account> getAllAccounts() {
     return accountRepository.findAll();
   }
 
-  @GetMapping("/loadDefaultUsers")
-  public List<Account> createDefaultRewardItems() throws IOException {
-    Loader userLoader = new Loader();
-    return accountRepository
-        .saveAll(userLoader.createAccountList(userLoader.readJSON("./src/main/resources/defaultAccounts.json")));
+  @GetMapping("/load/file")
+  public String createDefaultRewardItems() throws IOException {
+    try {
+      accountRepository.saveAll(userLoader.getS3DefaultAccounts());
+      // accountRepository.saveAll(userLoader.createAccountList(userLoader.readJSON("./src/main/resources/defaultAccounts.json")));
+      return "Successful loading default accounts from S3";
+    } catch (Exception e) {
+      System.out.println("Unable to load from JSON.");
+      return "Unable to load default accounts from S3 " + e;
+    }
   }
 
-  @GetMapping("/getByUsername")
-  public Account getAccountById(@RequestParam(value = "username", required = true) String username) {
+  @GetMapping("/username/{username}")
+  public Account getAccountById(@PathVariable String username) {
     return accountRepository.findByUsername(username);
   }
 
-  @GetMapping("/getById")
-  public Account getAccountById(@RequestParam(value = "id", required = true) Long id) {
+  @GetMapping("/id/{id}")
+  public Account getAccountById(@PathVariable Long id) {
     return accountRepository.findById(id).get();
   }
 
@@ -61,9 +74,9 @@ public class AccountController {
     Account account = accountRepository.findById(id).get();
     return new Auth(account.getId(), account.getPoints());
   }
-  
-  @PostMapping("/updateUser")
-  public Account updateUser(Account userToUpdate) {	  
-	  return accountRepository.save(userToUpdate);
+
+  @PostMapping("/update")
+  public Account updateUser(Account userToUpdate) {
+    return accountRepository.save(userToUpdate);
   }
 }

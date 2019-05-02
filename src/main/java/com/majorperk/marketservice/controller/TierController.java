@@ -7,9 +7,9 @@ import com.majorperk.marketservice.service.TierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +26,7 @@ class TierController {
 	TierService tierService;
 
 	@ResponseBody
-	@RequestMapping(value = "/updateAllAccountTiers", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/update/tiers", method = RequestMethod.POST, produces = "application/json")
 	void updateAllAccountTiers() {
 		try {
 			tierService.updateTiers(accountRepository.findAll());
@@ -35,8 +35,8 @@ class TierController {
 		}
 	}
 	
-	  @GetMapping("/getTier")
-	  public Tier getTierById(@RequestParam(value = "userId", required = true) long userId) {
+	  @GetMapping("/user/{id}")
+	  public Tier getTierById(@PathVariable long userId) {
 		  try {
 			  return accountRepository.findById(userId).get().getTier();	  
 		  } catch (Exception e) {

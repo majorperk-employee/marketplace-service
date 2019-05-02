@@ -30,17 +30,17 @@ class PurchaseController {
 
 	// Checkout
 	@ResponseBody
-	@RequestMapping(value = "/checkout", method = RequestMethod.POST, produces = "application/json")
-	Cart checkout(@RequestParam(value = "userId", required = true) Long userId) {
+	@RequestMapping(value = "/checkout/{id}", method = RequestMethod.POST, produces = "application/json")
+	Cart checkout(@PathVariable Long id) {
 		try {
-			List<Long> purchasedItems = purchaseService.purchaseItems(userId);
+			List<Long> purchasedItems = purchaseService.purchaseItems(id);
 			if (purchasedItems.size() > 0) {
-				return cartService.removeItems(userId, purchasedItems);
+				return cartService.removeItems(id, purchasedItems);
 			} else {
-				return cartService.getCartByUser(userId);
+				return cartService.getCartByUser(id);
 			}	
 		} catch (Exception e) {
-			System.out.println("Unable to complete purchase for " + userId);
+			System.out.println("Unable to complete purchase for " + id);
 			return new Cart(-1);
 		}
 	}

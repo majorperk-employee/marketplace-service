@@ -3,11 +3,15 @@ package com.majorperk.marketservice.utils;
 public class Constants {
     public static final Integer USD_PTS_CONVERSION = 50;
 
-    /* COLUMNS */
 
+    /* AWS S3 */
 
-    // POSTGRES
-
+    public static final String DEFAULT_FOLDER = "default_data";
+    public static final String DEFAULT_CATEGORIES = "/defaultCategories.json";
+    public static final String DEFAULT_ACCOUNTS = "/defaultACCOUNTS.json";
+    public static final String DEFAULT_BRANDS = "/TangoCardRewards.json";
+    
+    /* POSTGRES */
     
     //BRAND Table
     public static final String BRAND_TABLE = "brand";
