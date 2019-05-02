@@ -3,7 +3,7 @@ package com.majorperk.marketservice.service;
 import static com.majorperk.marketservice.utils.Constants.DEFAULT_ACCOUNTS;
 import static com.majorperk.marketservice.utils.Constants.DEFAULT_CATEGORIES;
 import static com.majorperk.marketservice.utils.Constants.DEFAULT_FOLDER;
-
+import static com.majorperk.marketservice.utils.Constants.DEFAULT_BRANDS;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -117,7 +117,7 @@ public class Loader {
 
 	public List<Brand> getS3DefaultBrands() {
 		System.out.println("0");
-		S3Object s3object = s3client.getObject(bucket,"default_data/TangoCardRewards.json");
+		S3Object s3object = s3client.getObject(bucket,DEFAULT_FOLDER + DEFAULT_BRANDS);
 		
 		System.out.println("1");
 		S3ObjectInputStream inputStream = s3object.getObjectContent();
