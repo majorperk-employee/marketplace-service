@@ -8,7 +8,7 @@ public class Constants {
 
     public static final String DEFAULT_FOLDER = "default_data";
     public static final String DEFAULT_CATEGORIES = "/defaultCategories.json";
-    public static final String DEFAULT_ACCOUNTS = "/defaultACCOUNTS.json";
+    public static final String DEFAULT_ACCOUNTS = "/defaultAccounts.json";
     public static final String DEFAULT_BRANDS = "/TangoCardRewards.json";
     
     /* POSTGRES */
