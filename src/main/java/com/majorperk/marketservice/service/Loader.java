@@ -116,17 +116,11 @@ public class Loader {
 	}
 
 	public List<Brand> getS3DefaultBrands() {
-		System.out.println("0");
 		S3Object s3object = s3client.getObject(bucket,DEFAULT_FOLDER + DEFAULT_BRANDS);
-		
-		System.out.println("1");
 		S3ObjectInputStream inputStream = s3object.getObjectContent();
-		
-		System.out.println("2");
 		ObjectMapper jsonMapper = new ObjectMapper();
 
 		try {
-			System.out.println("3");
 			List<Brand> brands = jsonMapper.readValue(inputStream, new TypeReference<List<Brand>>() {});
 			return brands;
 		} catch (Exception e) {
