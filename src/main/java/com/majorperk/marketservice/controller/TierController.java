@@ -27,11 +27,13 @@ class TierController {
 
 	@ResponseBody
 	@RequestMapping(value = "/update/tiers", method = RequestMethod.POST, produces = "application/json")
-	void updateAllAccountTiers() {
+	public String updateAllAccountTiers() {
 		try {
 			tierService.updateTiers(accountRepository.findAll());
+			return "Successful update!";
 		} catch (Exception e) {
 			System.out.println("Unable to complete tier uppdate");
+			return "Unable to complete tier uppdate";
 		}
 	}
 	
