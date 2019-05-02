@@ -13,6 +13,10 @@ repositories {
 	mavenCentral()
 }
 
+jar {     
+   exclude('your thing')     
+}
+
 bootJar {
 	baseName = project.name
 	enabled = true
