@@ -1,6 +1,5 @@
 package com.majorperk.marketservice.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;

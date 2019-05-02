@@ -116,7 +116,7 @@ public class Loader {
 	}
 
 	public List<Brand> getS3DefaultBrands() {
-		S3Object s3object = s3client.getObject(bucket,DEFAULT_FOLDER + DEFAULT_BRANDS);
+		S3Object s3object = s3client.getObject(bucket, DEFAULT_FOLDER + DEFAULT_BRANDS);
 		S3ObjectInputStream inputStream = s3object.getObjectContent();
 		ObjectMapper jsonMapper = new ObjectMapper();
 

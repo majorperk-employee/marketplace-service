@@ -36,11 +36,11 @@ class TierController {
 	}
 	
 	  @GetMapping("/user/{id}")
-	  public Tier getTierById(@PathVariable long userId) {
+	  public Tier getTierById(@PathVariable long id) {
 		  try {
-			  return accountRepository.findById(userId).get().getTier();	  
+			  return accountRepository.findById(id).get().getTier();	  
 		  } catch (Exception e) {
-				System.out.println("Unable to complete tier update for " + userId);
+				System.out.println("Unable to complete tier update for " + id);
 				return new Tier();
 		  }	    
 	  }
