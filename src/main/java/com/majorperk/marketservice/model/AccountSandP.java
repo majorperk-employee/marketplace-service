@@ -1,75 +1,48 @@
 package com.majorperk.marketservice.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-//@Entity
-//@Table(name="accountSandP")
-@JsonPropertyOrder({ 
-	
-	
-	"employee_id",
-	"firstname", 
-	"lastname", 
-	"fullname",
-	"team_id",
-	"team_name",
-	"location_id",
-	"location_name",
-	"prod_hours",
-	"sales",
-	"avg_speed_answer",
-	"avg_handle",
-	"first_call_resolution",
-	"customer_satisfcation",	
-	"abstenteeism",	
-	"input_data_error",	
-	"contact_quality"})
+@Entity
+@Table(name="accountSandP")
+@JsonPropertyOrder({"employee_id", "firstname", "lastname", "fullname", "team_id", "team_name", "location_id", "location_name", "prod_hours", "sales", "avg_speed_answer", "avg_handle", "first_call_resolution", "customer_satisfcation", "abstenteeism", "input_data_error", "contact_quality"})
 public class AccountSandP {
 
-	/*@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	Cart cart = new Cart();
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	List<Purchase> purchases = new ArrayList<Purchase>();
-
-	@OneToOne(cascade= CascadeType.ALL)
-	private Tier tier;*/	
-	
-	String employee_id;
+	@Id
+	int employee_id;
 	String firstname;
 	String lastname;
 	String fullname;
-	String team_id;
+	int team_id;
 	String team_name;
-	String location_id;
+	int location_id;
 	String location_name;
-	String prod_hours;
-	String sales;
-	String avg_speed_answer;
-	String avg_handle;
-	String first_call_resolution;
-	String customer_satisfcation;
-	String abstenteeism;
-	String input_data_error;
-	String contact_quality;
+	double prod_hours;
+	int sales;
+	double avg_speed_answer;
+	double avg_handle;
+	double first_call_resolution;
+	double customer_satisfcation;
+	double abstenteeism;
+	double input_data_error;
+	double contact_quality;
 
 	// DEFAULT, makes JPA happy.
 	public AccountSandP() {
 		super();
 	}
-
-	public String getEmployee_id() {
+	
+	public int getEmployee_id() {
 		return employee_id;
 	}
 
-	public void setEmployee_id(String employee_id) {
+	public void setEmployee_id(int employee_id) {
 		this.employee_id = employee_id;
 	}
-	
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -94,11 +67,11 @@ public class AccountSandP {
 		this.fullname = fullname;
 	}
 
-	public String getTeam_id() {
+	public int getTeam_id() {
 		return team_id;
 	}
 
-	public void setTeam_id(String team_id) {
+	public void setTeam_id(int team_id) {
 		this.team_id = team_id;
 	}
 
@@ -110,11 +83,11 @@ public class AccountSandP {
 		this.team_name = team_name;
 	}
 
-	public String getLocation_id() {
+	public int getLocation_id() {
 		return location_id;
 	}
 
-	public void setLocation_id(String location_id) {
+	public void setLocation_id(int location_id) {
 		this.location_id = location_id;
 	}
 
@@ -126,75 +99,76 @@ public class AccountSandP {
 		this.location_name = location_name;
 	}
 
-	public String getProd_hours() {
+	public double getProd_hours() {
 		return prod_hours;
 	}
 
-	public void setProd_hours(String prod_hours) {
+	public void setProd_hours(double prod_hours) {
 		this.prod_hours = prod_hours;
 	}
 
-	public String getSales() {
+	public int getSales() {
 		return sales;
 	}
 
-	public void setSales(String sales) {
+	public void setSales(int sales) {
 		this.sales = sales;
 	}
 
-	public String getAvg_speed_answer() {
+	public double getAvg_speed_answer() {
 		return avg_speed_answer;
 	}
 
-	public void setAvg_speed_answer(String avg_speed_answer) {
+	public void setAvg_speed_answer(double avg_speed_answer) {
 		this.avg_speed_answer = avg_speed_answer;
 	}
 
-	public String getAvg_handle() {
+	public double getAvg_handle() {
 		return avg_handle;
 	}
 
-	public void setAvg_handle(String avg_handle) {
+	public void setAvg_handle(double avg_handle) {
 		this.avg_handle = avg_handle;
 	}
 
-	public String getFirst_call_resolution() {
+	public double getFirst_call_resolution() {
 		return first_call_resolution;
 	}
 
-	public void setFirst_call_resolution(String first_call_resolution) {
+	public void setFirst_call_resolution(double first_call_resolution) {
 		this.first_call_resolution = first_call_resolution;
 	}
 
-	public String getCustomer_satisfcation() {
+	public double getCustomer_satisfcation() {
 		return customer_satisfcation;
 	}
 
-	public void setCustomer_satisfcation(String customer_satisfcation) {
+	public void setCustomer_satisfcation(double customer_satisfcation) {
 		this.customer_satisfcation = customer_satisfcation;
 	}
 
-	public String getAbstenteeism() {
+	public double getAbstenteeism() {
 		return abstenteeism;
 	}
 
-	public void setAbstenteeism(String abstenteeism) {
+	public void setAbstenteeism(double abstenteeism) {
 		this.abstenteeism = abstenteeism;
 	}
 
-	public String getInput_data_error() {
+	public double getInput_data_error() {
 		return input_data_error;
 	}
 
-	public void setInput_data_error(String input_data_error) {
+	public void setInput_data_error(double input_data_error) {
 		this.input_data_error = input_data_error;
 	}
 
-	public String getContact_quality() {
+	public double getContact_quality() {
 		return contact_quality;
 	}
 
-	public void setContact_quality(String contact_quality) {
+	public void setContact_quality(double contact_quality) {
 		this.contact_quality = contact_quality;
 	}
+
 }

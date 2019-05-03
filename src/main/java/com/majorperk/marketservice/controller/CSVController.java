@@ -3,7 +3,6 @@ package com.majorperk.marketservice.controller;
 import com.majorperk.marketservice.model.AccountSandP;
 import com.majorperk.marketservice.service.CSVMapper;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,14 +20,13 @@ class CSVController {
 	@Autowired
 	CSVMapper csvMapper;
 	
-	@GetMapping("/readSandPAccounts")
+	@GetMapping("/readDefaultSandPAccounts")
 	public List<AccountSandP> readSandPAccounts() {
-	  try {
-		  File csvToRead = new File("./src/main/resources/S&P-Sample-Data-employees.csv");
-		  return csvMapper.readCSV(csvToRead);
+	  try {		  
+		  return csvMapper.readDefaultCSV();
 	  } catch (Exception e) {
 		  	System.out.println("Unable to read csv file " + e);
 		  return new ArrayList<AccountSandP>();
-		  }
 	  }
+	}
 }

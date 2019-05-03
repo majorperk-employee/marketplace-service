@@ -14,10 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class CSVMapper {
 
-    public List<AccountSandP> readCSV(File csvFile) {    	
+    public List<AccountSandP> readDefaultCSV() {
 		try {
+			File csvToRead = new File("./src/main/resources/S&P-Sample-Data-employees.csv");
 			MappingIterator<AccountSandP> personIter;
-			personIter = new CsvMapper().readerWithTypedSchemaFor(AccountSandP.class).readValues(csvFile);
+			personIter = new CsvMapper().readerWithTypedSchemaFor(AccountSandP.class).readValues(csvToRead);
 			return personIter.readAll();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
