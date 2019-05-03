@@ -24,8 +24,8 @@ class CSVController {
 	@GetMapping("/readSandPAccounts")
 	public List<AccountSandP> readSandPAccounts() {
 	  try {
-		  File csvToRead = new File("C:\\Users\\Luke\\Documents\\marketplace-service\\src\\main\\resources\\S&P-Sample-Data-employees.csv");
-		  return csvMapper.readCSV(csvToRead);	  
+		  File csvToRead = new File("./src/main/resources/S&P-Sample-Data-employees.csv");
+		  return csvMapper.readCSV(csvToRead);
 	  } catch (Exception e) {
 		  	System.out.println("Unable to read csv file " + e);
 		  return new ArrayList<AccountSandP>();
