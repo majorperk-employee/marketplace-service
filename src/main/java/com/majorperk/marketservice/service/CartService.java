@@ -25,6 +25,27 @@ public class CartService {
 
 	Integer cartCost = 0;
 
+	public Cart addCustomItem(Long userId, Long itemId, Integer price) {
+
+		Long cartId = accountRepository.findById(userId).get().getCart().getId();
+		
+		Cart cart = cartRepository.findById(cartId).get();		
+
+		RewardItem itemToAdd = rewardRepository.findById(itemId).get();
+		itemToAdd.setPrice(price);
+		
+		cart.getItems().add(itemToAdd);
+		
+		cart.setCost(updateCost(cart));
+
+		itemToAdd.getMeta().incrementSelected();
+
+
+		rewardRepository.save(itemToAdd);
+		
+		return cartRepository.save(cart);
+	}
+
 	public Cart addItem(Long userId, Long itemId) {
 
 		Long cartId = accountRepository.findById(userId).get().getCart().getId();
