@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,8 +25,9 @@ class CartController {
 	// POST add item to cart
 	@ResponseBody
 	@RequestMapping(value = "/{id}/add/{itemId}", method = RequestMethod.POST, produces = "application/json")
-	Cart addItem(@PathVariable Long id, @PathVariable Long itemId, @RequestParam(value = "price", defaultValue="0", required = false) Integer price) {
+	Cart addItem(@PathVariable Long id, @PathVariable Long itemId, @RequestBody(required = false) Integer price) {
 		try {
+			System.out.println(price);
 			if (price > 0) {
 				return cartService.addCustomItem(id, itemId, price);
 			}

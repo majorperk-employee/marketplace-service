@@ -27,12 +27,15 @@ public class CartService {
 
 	public Cart addCustomItem(Long userId, Long itemId, Integer price) {
 
-		Long cartId = accountRepository.findById(userId).get().getCart().getId();
-		
-		Cart cart = cartRepository.findById(cartId).get();		
+		Account account = accountRepository.findById(userId).get();
 
+		Cart cart  = account.getCart();
+		
 		RewardItem itemToAdd = rewardRepository.findById(itemId).get();
-		itemToAdd.setPrice(price);
+
+		itemToAdd.setFaceValue(price);
+
+		itemToAdd.setPrice(price * account.getTier().getMultiplier());
 		
 		cart.getItems().add(itemToAdd);
 		
@@ -48,11 +51,13 @@ public class CartService {
 
 	public Cart addItem(Long userId, Long itemId) {
 
-		Long cartId = accountRepository.findById(userId).get().getCart().getId();
-		
-		Cart cart = cartRepository.findById(cartId).get();		
+		Account account = accountRepository.findById(userId).get();
 
+		Cart cart  = account.getCart();
+		
 		RewardItem itemToAdd = rewardRepository.findById(itemId).get();
+
+		itemToAdd.setPrice(itemToAdd.getFaceValue() * account.getTier().getMultiplier());
 		
 		cart.getItems().add(itemToAdd);
 		
@@ -84,7 +89,7 @@ public class CartService {
 	private Integer updateCost(Cart cart) {
 		cartCost = 0;
 		cart.getItems().forEach(item -> {
-			cartCost += item.updatePrice();
+			cartCost += item.getPrice();
 		});
 		return cartCost;
 	}

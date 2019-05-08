@@ -19,6 +19,8 @@ public class Tier {
 	double onTimePercentGoal;
 	int totalDaysGoal;
 
+	int multiplier;
+
 	public String getCurrentTier() {
 		return currentTier;
 	}
@@ -48,5 +50,19 @@ public class Tier {
 	
 	public void setTotalDaysGoal(int totalDaysGoal) {
 		this.totalDaysGoal = totalDaysGoal;
+	}
+
+	/**
+	 * @return the multiplier
+	 */
+	public int getMultiplier() {
+		return multiplier;
+	}
+
+	/**
+	 * @param multiplier the multiplier to set
+	 */
+	public void setMultiplier(int multiplier) {
+		this.multiplier = multiplier;
 	}
 }

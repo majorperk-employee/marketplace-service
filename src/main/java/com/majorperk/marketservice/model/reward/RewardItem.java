@@ -1,7 +1,5 @@
 package com.majorperk.marketservice.model.reward;
 
-import static com.majorperk.marketservice.utils.Constants.USD_PTS_CONVERSION;
-
 import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
@@ -51,13 +49,8 @@ public class RewardItem {
 		super();
 	}
 
-	public Integer updatePrice() {
-		return this.faceValue * USD_PTS_CONVERSION;
-	}
-
 	public RewardItemMeta getMeta() {
 		if (this.meta == null) {
-			System.out.println("Generating Meta for: " + this.utid);
 			return new RewardItemMeta(0, 0);
 		}
 		return this.meta;
