@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -21,16 +19,16 @@ public class Account {
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	Cart cart = new Cart();
+	private Cart cart = new Cart();
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	List<Purchase> purchases = new ArrayList<Purchase>();
+	private List<Purchase> purchases = new ArrayList<Purchase>();
 
 	@OneToOne(cascade= CascadeType.ALL)
-	private Tier tier;
+	private Tier tier = new Tier();
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private SandPMetrics sAndPMetrics;
+	private SandPMetrics sAndPMetrics = new SandPMetrics();
 	
 	private String phone;
 	private String nickname;

@@ -44,7 +44,8 @@ public class MetricsService {
 			if(account.isPresent()) {
 				Account accountToUpdate = account.get();
 				accountToUpdate.setSAndPMetrics(metric);
-			} else {				
+				accountRepository.save(accountToUpdate);
+			} else {
 				Account newAccount = buildDefaultAccount(metric);
 				accountRepository.save(newAccount);
 			}
