@@ -27,17 +27,16 @@ class CartController {
 	@RequestMapping(value = "/{id}/add/{itemId}", method = RequestMethod.POST, produces = "application/json")
 	Cart addItem(@PathVariable Long id, @PathVariable Long itemId, @RequestBody(required = false) Integer price) {
 		try {
-			System.out.println(price);
-			if (price > 0) {
-				return cartService.addCustomItem(id, itemId, price);
+			if (price != null) {
+				return cartService.addItem(id, itemId, price);
 			}
-			return cartService.addItem(id, itemId);
+			return cartService.getCart(id);
 		} catch (Exception e) {
 			System.out.println("Unable to add items for user: " + id + " :::" + e);
 			return new Cart(-1);
 		}
 	}
-	
+
 	// POST remove items from the cart
 	@ResponseBody
 	@RequestMapping(value = "/{id}/remove", method = RequestMethod.POST, produces = "application/json")

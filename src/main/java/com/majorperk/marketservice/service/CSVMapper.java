@@ -21,7 +21,6 @@ public class CSVMapper {
 			personIter = new CsvMapper().readerWithTypedSchemaFor(AccountSandP.class).readValues(csvToRead);
 			return personIter.readAll();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new ArrayList<AccountSandP>();
 		}		

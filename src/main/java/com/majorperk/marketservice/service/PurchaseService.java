@@ -1,5 +1,7 @@
 package com.majorperk.marketservice.service;
 
+import static com.majorperk.marketservice.utils.Constants.TANGO_FIXED_VALUE;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,14 +39,20 @@ public class PurchaseService {
 		
 		itemsToPurchase.forEach(item -> {
 		
+			Integer value = item.getFaceValue();
+
+			if(!(item.getValueType()== TANGO_FIXED_VALUE)) {
+				item.setFaceValue(null);
+			}
+
 			item.getMeta().incrementPurchased();
 		
 			rewardRepository.save(item);
 		
 			purchase.setCost(purchase.getCost() + item.getPrice());
-		
-			item.setPrice(item.getPrice());
 
+			item.setFaceValue(value);
+			
 			purchase.addPurchaseItem(item);
 		
 			purchasedItemIds.add(item.getId());

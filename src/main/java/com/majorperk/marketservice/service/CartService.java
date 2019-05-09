@@ -25,7 +25,7 @@ public class CartService {
 
 	Integer cartCost = 0;
 
-	public Cart addCustomItem(Long userId, Long itemId, Integer price) {
+	public Cart addItem(Long userId, Long itemId, Integer price) {
 
 		Account account = accountRepository.findById(userId).get();
 
@@ -36,28 +36,6 @@ public class CartService {
 		itemToAdd.setFaceValue(price);
 
 		itemToAdd.setPrice(price * account.getTier().getMultiplier());
-		
-		cart.getItems().add(itemToAdd);
-		
-		cart.setCost(updateCost(cart));
-
-		itemToAdd.getMeta().incrementSelected();
-
-
-		rewardRepository.save(itemToAdd);
-		
-		return cartRepository.save(cart);
-	}
-
-	public Cart addItem(Long userId, Long itemId) {
-
-		Account account = accountRepository.findById(userId).get();
-
-		Cart cart  = account.getCart();
-		
-		RewardItem itemToAdd = rewardRepository.findById(itemId).get();
-
-		itemToAdd.setPrice(itemToAdd.getFaceValue() * account.getTier().getMultiplier());
 		
 		cart.getItems().add(itemToAdd);
 		

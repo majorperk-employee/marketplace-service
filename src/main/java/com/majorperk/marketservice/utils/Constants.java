@@ -75,5 +75,9 @@ public class Constants {
 	
 	public static final int PLATINUM_DAYS = 120;
 	public static final int GOLD_DAYS = 90;	
-	public static final int SILVER_DAYS = 60;
+    public static final int SILVER_DAYS = 60;
+    
+    /* TANGOCARD */
+
+    public static final String TANGO_FIXED_VALUE = "FIXED_VALUE";
 }

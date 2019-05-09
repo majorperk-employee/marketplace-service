@@ -5,7 +5,7 @@ spring:
     active: ${ENVIRONMENT:local}
   jpa:
     hibernate:
-        ddl-auto: update #or - create, create-drop, validate, update
+        ddl-auto: create #or - create, create-drop, validate, update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
