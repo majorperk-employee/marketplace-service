@@ -7,9 +7,9 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @Entity
-@Table(name="accountSandP")
+@Table(name="sAndPMetrics")
 @JsonPropertyOrder({"employee_id", "firstname", "lastname", "fullname", "team_id", "team_name", "location_id", "location_name", "prod_hours", "sales", "avg_speed_answer", "avg_handle", "first_call_resolution", "customer_satisfcation", "abstenteeism", "input_data_error", "contact_quality"})
-public class AccountSandP {
+public class SandPMetrics {
 
 	@Id
 	int employee_id;
@@ -31,7 +31,7 @@ public class AccountSandP {
 	double contact_quality;
 
 	// DEFAULT, makes JPA happy.
-	public AccountSandP() {
+	public SandPMetrics() {
 		super();
 	}
 	

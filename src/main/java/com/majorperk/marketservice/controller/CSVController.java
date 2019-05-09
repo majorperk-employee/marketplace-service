@@ -1,6 +1,7 @@
 package com.majorperk.marketservice.controller;
 
-import com.majorperk.marketservice.model.AccountSandP;
+import com.majorperk.marketservice.model.SandPMetrics;
+import com.majorperk.marketservice.repository.AccountSandPRepository;
 import com.majorperk.marketservice.service.CSVMapper;
 
 import java.util.ArrayList;
@@ -18,15 +19,33 @@ import org.springframework.web.bind.annotation.RestController;
 class CSVController {
 	
 	@Autowired
+	AccountSandPRepository sAndPMetricsRepository;
+	
+	@Autowired
 	CSVMapper csvMapper;
 	
-	@GetMapping("/readDefaultSandPAccounts")
-	public List<AccountSandP> readSandPAccounts() {
+	@GetMapping("/readSandPAccounts")
+	public List<SandPMetrics> readSandPAccounts() {
 	  try {		  
 		  return csvMapper.readDefaultCSV();
 	  } catch (Exception e) {
 		  	System.out.println("Unable to read csv file " + e);
-		  return new ArrayList<AccountSandP>();
+		  return new ArrayList<SandPMetrics>();
 	  }
+	}
+	
+	@GetMapping("/loadSandPAccounts")
+	public String loadSandPAccounts() {
+		try {
+			sAndPMetricsRepository.saveAll(csvMapper.readDefaultCSV());
+			return "Successful loading of SandPAccounts";
+		} catch (Exception e) {
+			return "Exception encountered loading S and P Accounts " + e;
+		}
+	}
+	
+	@GetMapping("/getSandPAccounts")
+	public List<SandPMetrics> getAllSandPAccounts() {
+			return sAndPMetricsRepository.findAll();		
 	}
 }
