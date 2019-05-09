@@ -38,9 +38,10 @@ public class TierService {
 
 	private Tier updateTier(Account account) {
 		
-		int totalDays = account.getTotaldays();
-		double onTimeDays = account.getOntimedays();
-		double onTimePercent = account.getOntimedays() / totalDays;
+		int totalDays = (int) (account.getsAndPMetrics().getProd_hours()/8);		
+		double onTimePercent = 1 - account.getsAndPMetrics().getAbstenteeism();
+		double onTimeDays = totalDays * onTimePercent;
+		
 		Tier tier = account.getTier();				
 		
 		if(onTimeDays >= PLATINUM_DAYS && onTimePercent >= PLATINUM_PERCENT) {

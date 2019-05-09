@@ -24,7 +24,7 @@ class SandPMetricsController {
 	@Autowired
 	CSVMapper csvMapper;
 	
-	@GetMapping("/readSandPAccounts")
+	@GetMapping("/readSandPMetrics")
 	public List<SandPMetrics> readSandPAccounts() {
 	  try {		  
 		  return csvMapper.readDefaultCSV();
@@ -34,7 +34,7 @@ class SandPMetricsController {
 	  }
 	}
 	
-	@GetMapping("/loadSandPAccounts")
+	@GetMapping("/loadSandPMetrics")
 	public String loadSandPAccounts() {
 		try {
 			sAndPMetricsRepository.saveAll(csvMapper.readDefaultCSV());
@@ -44,7 +44,7 @@ class SandPMetricsController {
 		}
 	}
 	
-	@GetMapping("/getSandPAccounts")
+	@GetMapping("/getAllSandPMetrics")
 	public List<SandPMetrics> getAllSandPAccounts() {
 			return sAndPMetricsRepository.findAll();		
 	}
