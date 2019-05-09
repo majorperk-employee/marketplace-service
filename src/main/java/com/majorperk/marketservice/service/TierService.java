@@ -38,8 +38,8 @@ public class TierService {
 
 	private Tier updateTier(Account account) {
 		
-		int totalDays = (int) (account.getsAndPMetrics().getProd_hours()/8);		
-		double onTimePercent = 1 - account.getsAndPMetrics().getAbstenteeism();
+		int totalDays = (int) (account.getSAndPMetrics().getProd_hours()/8);		
+		double onTimePercent = 1 - account.getSAndPMetrics().getAbstenteeism();
 		double onTimeDays = totalDays * onTimePercent;
 		
 		Tier tier = account.getTier();

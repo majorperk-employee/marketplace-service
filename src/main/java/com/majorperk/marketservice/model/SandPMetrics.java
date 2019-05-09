@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class SandPMetrics {
 
 	@Id
-	int employee_id;
+	long employee_id;
 	String firstname;
 	String lastname;
 	String fullname;
@@ -35,11 +35,11 @@ public class SandPMetrics {
 		super();
 	}
 	
-	public int getEmployee_id() {
+	public long getEmployee_id() {
 		return employee_id;
 	}
 
-	public void setEmployee_id(int employee_id) {
+	public void setEmployee_id(long employee_id) {
 		this.employee_id = employee_id;
 	}
 

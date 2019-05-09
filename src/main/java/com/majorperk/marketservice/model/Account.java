@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Account {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -52,10 +52,7 @@ public class Account {
 		this.password = password;
 	}
 
-	public Account(String username, String password, String firstName, String lastName, String token, String job,
-			Tier tier, SandPMetrics sAndPMetrics, String address, String city, String state, Integer zip, String picture, Integer points, 
-			Integer totaldays, double ontimedays, Integer daystreak) {
-
+	public Account(String username, String password, Tier tier, SandPMetrics sAndPMetrics, String picture, Integer points) {
 		this.username = username;
 		this.password = password;
 		this.tier = tier;
@@ -132,15 +129,7 @@ public class Account {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public SandPMetrics getsAndPMetrics() {
-		return sAndPMetrics;
-	}
-
-	public void setsAndPMetrics(SandPMetrics sAndPMetrics) {
-		this.sAndPMetrics = sAndPMetrics;
-	}
-
+	
 	public boolean isManager() {
 		return manager;
 	}
