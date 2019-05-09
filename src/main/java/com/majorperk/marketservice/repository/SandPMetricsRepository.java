@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.majorperk.marketservice.model.SandPMetrics;
 
 @Repository
-public interface AccountSandPRepository extends JpaRepository<SandPMetrics, Long> {
+public interface SandPMetricsRepository extends JpaRepository<SandPMetrics, Long> {
 }

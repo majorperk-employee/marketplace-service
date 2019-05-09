@@ -85,11 +85,11 @@ public class Account {
 		this.tier = tier;
 	}
 
-	public SandPMetrics getAccountSandP() {
+	public SandPMetrics getSAndPMetrics() {
 		return sAndPMetrics;
 	}
 
-	public void setAccountSandP(SandPMetrics sAndPMetrics) {
+	public void setSAndPMetrics(SandPMetrics sAndPMetrics) {
 		this.sAndPMetrics = sAndPMetrics;
 	}
 	

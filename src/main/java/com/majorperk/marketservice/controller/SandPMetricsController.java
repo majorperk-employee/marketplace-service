@@ -1,7 +1,7 @@
 package com.majorperk.marketservice.controller;
 
 import com.majorperk.marketservice.model.SandPMetrics;
-import com.majorperk.marketservice.repository.AccountSandPRepository;
+import com.majorperk.marketservice.repository.SandPMetricsRepository;
 import com.majorperk.marketservice.service.CSVMapper;
 
 import java.util.ArrayList;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("csv")
-class CSVController {
+class SandPMetricsController {
 	
 	@Autowired
-	AccountSandPRepository sAndPMetricsRepository;
+	SandPMetricsRepository sAndPMetricsRepository;
 	
 	@Autowired
 	CSVMapper csvMapper;
