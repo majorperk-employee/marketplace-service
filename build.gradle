@@ -30,11 +30,13 @@ bootJar {
 	}
 }
 
-dependencies {
+dependencies {	
 	implementation 'com.amazonaws:aws-java-sdk:1.11.543'
 	implementation 'org.apache.httpcomponents:httpclient:4.5.3'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.4'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.8.9'
 	implementation 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

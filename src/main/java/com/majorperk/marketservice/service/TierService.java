@@ -38,10 +38,11 @@ public class TierService {
 
 	private Tier updateTier(Account account) {
 		
-		int totalDays = account.getTotaldays();
-		double onTimeDays = account.getOntimedays();
-		double onTimePercent = account.getOntimedays() / totalDays;
-		Tier tier = account.getTier();				
+		int totalDays = (int) (account.getSAndPMetrics().getProd_hours()/8);		
+		double onTimePercent = 1 - account.getSAndPMetrics().getAbstenteeism();
+		double onTimeDays = totalDays * onTimePercent;
+		
+		Tier tier = account.getTier();
 		
 		if(onTimeDays >= PLATINUM_DAYS && onTimePercent >= PLATINUM_PERCENT) {
 			tier.setNextTier(PLATINUM);
@@ -54,7 +55,7 @@ public class TierService {
 			tier.setCurrentTier(GOLD);
 			
 			tier.setOnTimePercentGoal(PLATINUM_PERCENT);
-			tier.setTotalDaysGoal(PLATINUM_DAYS);			
+			tier.setTotalDaysGoal(PLATINUM_DAYS);
 		} else if(onTimeDays >= SILVER_DAYS && onTimePercent >= SILVER_PERCENT) {
 			tier.setNextTier(GOLD);
 			tier.setCurrentTier(SILVER);
@@ -70,5 +71,4 @@ public class TierService {
 		}
 		return tier;
 	}
-
 }
