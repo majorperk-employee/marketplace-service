@@ -58,13 +58,13 @@ public class MetricsService {
 		
 		defaultAccount.setId(metrics.getEmployee_id());
 		defaultAccount.setSAndPMetrics(metrics);
-		defaultAccount.setPhone("Phone Not Set");
-		defaultAccount.setNickname("Nickname Not Set");
+		defaultAccount.setPhone(null);
+		defaultAccount.setNickname(null);
 		defaultAccount.setUsername(userName);		
 		defaultAccount.setPassword("defaultPassword");
 		defaultAccount.setManager(false);
-		defaultAccount.setEmail("Email Not Set");
-		defaultAccount.setPicture("Picture Not Set");
+		defaultAccount.setEmail(null);
+		defaultAccount.setPicture(null);
 		defaultAccount.setPoints(0);
 		
 		return defaultAccount;
