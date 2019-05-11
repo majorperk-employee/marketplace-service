@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -17,35 +15,29 @@ import javax.persistence.Table;
 public class Account {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	Cart cart = new Cart();
+	private Cart cart = new Cart();
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	List<Purchase> purchases = new ArrayList<Purchase>();
+	private List<Purchase> purchases = new ArrayList<Purchase>();
 
 	@OneToOne(cascade= CascadeType.ALL)
-	private Tier tier;
+	private Tier tier = new Tier();
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private SandPMetrics sAndPMetrics = new SandPMetrics();
 	
 	private String phone;
 	private String nickname;
 	private String username;
 	private String password;
-	private String firstName;
-	private String lastName;
-	private String job;
-	private String address;
-	private String city;
-	private String state;
-	private String email;	
-	private Integer zip;
+	private boolean manager;
+	private String email;
 	private String picture;
 	private Integer points;
-	private Integer totaldays;
-	private double ontimedays;
-	private Integer daystreak;
 	
 
 	// DEFAULT, makes JPA happy.
@@ -56,35 +48,20 @@ public class Account {
 	public Account(String username, String password, String firstName, String lastName) {
 		this.username = username;
 		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
 	}
 
-	public Account(String username, String password, String firstName, String lastName, String token, String job,
-			Tier tier, String address, String city, String state, Integer zip, String picture, Integer points, 
-			Integer totaldays, double ontimedays, Integer daystreak) {
-
+	public Account(String username, String password, Tier tier, SandPMetrics sAndPMetrics, String picture, Integer points) {
 		this.username = username;
 		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.job = job;
 		this.tier = tier;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
+		this.sAndPMetrics = sAndPMetrics;
 		this.picture = picture;
 		this.points = points;
-		this.totaldays = totaldays;
-		this.ontimedays = ontimedays;
-		this.daystreak = daystreak;
-	}
+		}
 
 	@Override
 	public String toString() {
-		return "id: " + this.id + ", username: " + this.username + ", lastName, firstName:  " + this.lastName + ", "
-				+ this.firstName;
+		return "id: " + this.id + ", username: " + this.username;
 	}
 
 	public Cart getCart() {
@@ -95,30 +72,6 @@ public class Account {
 		this.cart = cart;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getJob() {
-		return job;
-	}
-
-	public void setJob(String job) {
-		this.job = job;
-	}
-
 	public Tier getTier() {
 		return tier;
 	}
@@ -127,38 +80,14 @@ public class Account {
 		this.tier = tier;
 	}
 
-	public String getAddress() {
-		return address;
+	public SandPMetrics getSAndPMetrics() {
+		return sAndPMetrics;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setSAndPMetrics(SandPMetrics sAndPMetrics) {
+		this.sAndPMetrics = sAndPMetrics;
 	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public Integer getZip() {
-		return zip;
-	}
-
-	public void setZip(Integer zip) {
-		this.zip = zip;
-	}
-
+	
 	public String getPicture() {
 		return picture;
 	}
@@ -173,30 +102,6 @@ public class Account {
 
 	public void setPoints(Integer points) {
 		this.points = points;
-	}
-
-	public Integer getTotaldays() {
-		return totaldays;
-	}
-
-	public void setTotaldays(Integer totaldays) {
-		this.totaldays = totaldays;
-	}
-
-	public double getOntimedays() {
-		return ontimedays;
-	}
-
-	public void setOntimedays(double ontimedays) {
-		this.ontimedays = ontimedays;
-	}
-
-	public Integer getDaystreak() {
-		return daystreak;
-	}
-
-	public void setDaystreak(Integer daystreak) {
-		this.daystreak = daystreak;
 	}
 
 	public long getId() {
@@ -221,6 +126,14 @@ public class Account {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public boolean isManager() {
+		return manager;
+	}
+
+	public void setManager(boolean manager) {
+		this.manager = manager;
 	}
 
 	public String getEmail() {
