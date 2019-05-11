@@ -39,34 +39,34 @@ public class TierService {
 	private Tier updateTier(Account account) {
 		
 		int totalDays = (int) (account.getSAndPMetrics().getProd_hours()/8);		
-		double onTimePercent = 1 - account.getSAndPMetrics().getAbstenteeism();
-		double onTimeDays = totalDays * onTimePercent;
+		double absenteeism = account.getSAndPMetrics().getAbstenteeism();
+		double onTimeDays = totalDays * absenteeism;
 		
 		Tier tier = account.getTier();
 		
-		if(onTimeDays >= PLATINUM_DAYS && onTimePercent >= PLATINUM_PERCENT) {
+		if(onTimeDays >= PLATINUM_DAYS && absenteeism >= PLATINUM_PERCENT) {
 			tier.setNextTier(PLATINUM);
 			tier.setCurrentTier(PLATINUM);
 			
-			tier.setOnTimePercentGoal(onTimePercent);
+			tier.setabsenteeismGoal(absenteeism);
 			tier.setTotalDaysGoal(totalDays);
-		} else if(onTimeDays >= GOLD_DAYS && onTimePercent >= GOLD_PERCENT) {
+		} else if(onTimeDays >= GOLD_DAYS && absenteeism >= GOLD_PERCENT) {
 			tier.setNextTier(PLATINUM);
 			tier.setCurrentTier(GOLD);
 			
-			tier.setOnTimePercentGoal(PLATINUM_PERCENT);
+			tier.setabsenteeismGoal(PLATINUM_PERCENT);
 			tier.setTotalDaysGoal(PLATINUM_DAYS);
-		} else if(onTimeDays >= SILVER_DAYS && onTimePercent >= SILVER_PERCENT) {
+		} else if(onTimeDays >= SILVER_DAYS && absenteeism >= SILVER_PERCENT) {
 			tier.setNextTier(GOLD);
 			tier.setCurrentTier(SILVER);
 			
-			tier.setOnTimePercentGoal(GOLD_PERCENT);
+			tier.setabsenteeismGoal(GOLD_PERCENT);
 			tier.setTotalDaysGoal(GOLD_DAYS);
 		} else {
 			tier.setNextTier(SILVER);
 			tier.setCurrentTier(EMPLOYEE);
 			
-			tier.setOnTimePercentGoal(SILVER_PERCENT);
+			tier.setabsenteeismGoal(SILVER_PERCENT);
 			tier.setTotalDaysGoal(SILVER_DAYS);
 		}
 		return tier;

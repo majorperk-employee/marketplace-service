@@ -61,7 +61,7 @@ public class MetricsService {
 		defaultAccount.setPhone(null);
 		defaultAccount.setNickname(null);
 		defaultAccount.setUsername(userName);		
-		defaultAccount.setPassword("defaultPassword");
+		defaultAccount.setPassword("password");
 		defaultAccount.setManager(false);
 		defaultAccount.setEmail(null);
 		defaultAccount.setPicture(null);

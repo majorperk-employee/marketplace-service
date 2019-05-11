@@ -16,7 +16,7 @@ public class Tier {
 	String currentTier;
 	String nextTier;	
 	
-	double onTimePercentGoal;
+	double absenteeismGoal;
 	int totalDaysGoal;
 
 	public String getCurrentTier() {
@@ -34,12 +34,12 @@ public class Tier {
 		this.nextTier = nextTier;
 	}
 	
-	public double getOnTimePercentGoal() {
-		return onTimePercentGoal;
+	public double getabsenteeismGoal() {
+		return absenteeismGoal;
 	}
 	
-	public void setOnTimePercentGoal(double onTimeGoal) {
-		this.onTimePercentGoal = onTimeGoal;
+	public void setabsenteeismGoal(double absenteeismGoal) {
+		this.absenteeismGoal = absenteeismGoal;
 	}
 	
 	public int getTotalDaysGoal() {
