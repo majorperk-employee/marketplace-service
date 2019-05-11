@@ -13,14 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-class Auth {
+class SimpleUser {
   Long id;
   Integer points;
 
-  public Auth(Long id, Integer points) {
+  public SimpleUser(Long id, Integer points) {
     this.id = id;
     this.points = points;
   }
@@ -70,9 +69,9 @@ public class AccountController {
   }
 
   @GetMapping("/getAuth/{id}")
-  public Object getAuth(@PathVariable Long id) {
+  public SimpleUser getAuth(@PathVariable Long id) {
     Account account = accountRepository.findById(id).get();
-    return new Auth(account.getId(), account.getPoints());
+    return new SimpleUser(account.getId(), account.getPoints());
   }
 
   @PostMapping("/update")
