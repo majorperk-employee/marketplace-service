@@ -10,6 +10,7 @@ public class Constants {
     public static final String DEFAULT_CATEGORIES = "/defaultCategories.json";
     public static final String DEFAULT_ACCOUNTS = "/defaultAccounts.json";
     public static final String DEFAULT_BRANDS = "/TangoCardRewards.json";
+    public static final String S_AND_P_EMPLOYEES = "/S&P-Sample-Data-employees.csv";
     
     /* POSTGRES */
     

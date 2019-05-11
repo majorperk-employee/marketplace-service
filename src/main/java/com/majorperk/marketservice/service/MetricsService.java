@@ -1,5 +1,8 @@
 package com.majorperk.marketservice.service;
 
+import static com.majorperk.marketservice.utils.Constants.DEFAULT_FOLDER;
+import static com.majorperk.marketservice.utils.Constants.S_AND_P_EMPLOYEES;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,13 +10,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.model.SandPMetrics;
 import com.majorperk.marketservice.repository.AccountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,23 +31,32 @@ public class MetricsService {
 	@Autowired
 	AccountRepository accountRepository;
 	
-	Random random = new Random();
+
+	@Autowired
+    AmazonS3 s3client;
+
+    @Value("${cloud.aws.s3.bucket}")
+    private String bucket;
 	
-    public List<SandPMetrics> readDefaultCSV() {
+	Random random = new Random();
+    
+    public List<SandPMetrics> readS3Metrics() {
+		S3Object s3object = s3client.getObject(bucket, DEFAULT_FOLDER + S_AND_P_EMPLOYEES);
+		S3ObjectInputStream inputStream = s3object.getObjectContent();
+		
 		try {
-			File csvToRead = new File("./src/main/resources/S&P-Sample-Data-employees.csv");
 			MappingIterator<SandPMetrics> personIter;
-			personIter = new CsvMapper().readerWithTypedSchemaFor(SandPMetrics.class).readValues(csvToRead);
+			personIter = new CsvMapper().readerWithTypedSchemaFor(SandPMetrics.class).readValues(inputStream);
 			return personIter.readAll();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return new ArrayList<SandPMetrics>();
-		}		
+		} catch (Exception e) {
+			inputStream.abort();
+			System.out.println("Error getting s3 file 'defaultAccounts.json' ::: " + e);
+			return null;
+		}
     }
 
 	public void batchLoad() {
-		List<SandPMetrics> metricsToLoad = readDefaultCSV();
+		List<SandPMetrics> metricsToLoad = readS3Metrics();
 		metricsToLoad.forEach(metric -> {
 			Optional<Account> account = accountRepository.findById(metric.getEmployee_id());
 			if(account.isPresent()) {

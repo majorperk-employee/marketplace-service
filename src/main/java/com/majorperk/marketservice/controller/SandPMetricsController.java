@@ -30,8 +30,8 @@ class SandPMetricsController {
 	
 	@GetMapping("/readSandPMetrics")
 	public List<SandPMetrics> readSandPAccounts() {
-	  try {		  
-		  return metricsService.readDefaultCSV();
+	  try {
+		  return metricsService.readS3Metrics();
 	  } catch (Exception e) {
 		  	System.out.println("Unable to read csv file " + e);
 		  return new ArrayList<SandPMetrics>();
@@ -41,7 +41,7 @@ class SandPMetricsController {
 	@GetMapping("/loadSandPMetrics")
 	public String loadSandPAccounts() {
 		try {
-			sAndPMetricsRepository.saveAll(metricsService.readDefaultCSV());
+			sAndPMetricsRepository.saveAll(metricsService.readS3Metrics());
 			return "Successful loading of SandPAccounts";
 		} catch (Exception e) {
 			return "Exception encountered loading S and P Accounts " + e;
