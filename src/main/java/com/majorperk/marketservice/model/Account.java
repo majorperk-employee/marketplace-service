@@ -15,7 +15,6 @@ import javax.persistence.Table;
 public class Account {
 
 	@Id
-	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -29,6 +28,9 @@ public class Account {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private SandPMetrics sAndPMetrics = new SandPMetrics();
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Survey> surveys = new ArrayList<Survey>();
 	
 	private String phone;
 	private String nickname;
@@ -78,6 +80,14 @@ public class Account {
 
 	public void setTier(Tier tier) {
 		this.tier = tier;
+	}
+
+	public List<Survey> getSurveys() {
+		return surveys;
+	}
+
+	public void setSurveys(List<Survey> surveys) {
+		this.surveys = surveys;
 	}
 
 	public SandPMetrics getSAndPMetrics() {
