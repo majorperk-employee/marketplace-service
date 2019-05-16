@@ -1,10 +1,5 @@
 package com.majorperk.marketservice.controller;
 
-import com.majorperk.marketservice.model.SandPMetrics;
-import com.majorperk.marketservice.repository.AccountRepository;
-import com.majorperk.marketservice.repository.SandPMetricsRepository;
-import com.majorperk.marketservice.service.MetricsService;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +8,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.majorperk.marketservice.model.SandPMetrics;
+import com.majorperk.marketservice.repository.AccountRepository;
+import com.majorperk.marketservice.repository.SandPMetricsRepository;
+import com.majorperk.marketservice.service.MetricsService;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)

@@ -6,16 +6,16 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.majorperk.marketservice.model.Category;
-import com.majorperk.marketservice.repository.CategoryRepository;
-import com.majorperk.marketservice.service.Loader;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.majorperk.marketservice.model.Category;
+import com.majorperk.marketservice.repository.CategoryRepository;
+import com.majorperk.marketservice.service.Loader;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)

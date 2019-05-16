@@ -3,10 +3,6 @@ package com.majorperk.marketservice.controller;
 import java.io.IOException;
 import java.util.List;
 
-import com.majorperk.marketservice.model.Account;
-import com.majorperk.marketservice.repository.AccountRepository;
-import com.majorperk.marketservice.service.Loader;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.majorperk.marketservice.model.Account;
+import com.majorperk.marketservice.repository.AccountRepository;
+import com.majorperk.marketservice.service.Loader;
 
 class SimpleUser {
   Long id;

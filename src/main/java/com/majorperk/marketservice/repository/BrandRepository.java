@@ -10,12 +10,12 @@ import static com.majorperk.marketservice.utils.Constants.BRAND_OBJECT_STATUS;
 
 import java.util.List;
 
-import com.majorperk.marketservice.model.reward.Brand;
-import com.majorperk.marketservice.model.reward.SmallBrand;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import com.majorperk.marketservice.model.reward.Brand;
+import com.majorperk.marketservice.model.reward.SmallBrand;
 
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Long> {

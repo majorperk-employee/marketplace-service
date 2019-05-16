@@ -1,9 +1,9 @@
 package com.majorperk.marketservice.repository;
 
-import com.majorperk.marketservice.model.Purchase;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.majorperk.marketservice.model.Purchase;
 
 @Repository
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
