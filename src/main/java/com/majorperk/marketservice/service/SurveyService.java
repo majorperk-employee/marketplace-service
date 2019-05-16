@@ -45,11 +45,11 @@ public class SurveyService {
 		}
 	}
 
-	public List<Survey> getSurveysByUserId(long userId) {
-		return null;
-	}
-
 	public List<Survey> loadDefaultSurveys() {
 		return surveyRepository.saveAll(readS3Surveys());
+	}
+
+	public List<Survey> getSurveysByPeriod(int period) {
+		return surveyRepository.findByPeriod(period);
 	}
 }

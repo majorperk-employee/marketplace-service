@@ -28,8 +28,8 @@ class SurveyController {
 		return surveyService.loadDefaultSurveys();
 	}
 
-	@GetMapping("/user/{userId}")
-	public List<Survey> getSurveysByUser(@PathVariable long userId) {
-		return surveyService.getSurveysByUserId(userId);
+	@GetMapping("/user/period/{period}")
+	public List<Survey> getSurveysByUser(@PathVariable int period) {
+		return surveyService.getSurveysByPeriod(period);
 	}
 }

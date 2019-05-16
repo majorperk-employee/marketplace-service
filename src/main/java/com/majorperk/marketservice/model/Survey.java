@@ -25,16 +25,10 @@ public class Survey {
 	List<Integer> options;
 
 	String scale;
-	// int response = 0;
 
 	public Survey() {
 		super();
 	}
-	/*
-	 * public int getResponse() { return response; }
-	 * 
-	 * public void setResponse(int response) { this.response = response; }
-	 */
 
 	public Long getId() {
 		return id;
