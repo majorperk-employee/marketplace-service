@@ -1,32 +1,40 @@
 package com.majorperk.marketservice.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.majorperk.marketservice.model.reward.RewardItem;
-
 @Entity
-@Table(name="survey")
+@Table(name = "survey")
 public class Survey {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 
 	int period;
+
 	String question;
-	ArrayList<Integer> options = new ArrayList<Integer>();
-	int response;
-	
+	String duration;
+
+	@ElementCollection
+	List<Integer> options;
+
+	String scale;
+	// int response = 0;
+
 	public Survey() {
 		super();
 	}
+	/*
+	 * public int getResponse() { return response; }
+	 * 
+	 * public void setResponse(int response) { this.response = response; }
+	 */
 
 	public Long getId() {
 		return id;
@@ -34,6 +42,14 @@ public class Survey {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(int period) {
+		this.period = period;
 	}
 
 	public String getQuestion() {
@@ -44,19 +60,27 @@ public class Survey {
 		this.question = question;
 	}
 
-	public ArrayList<Integer> getOptions() {
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+
+	public List<Integer> getOptions() {
 		return options;
 	}
 
-	public void setOptions(ArrayList<Integer> options) {
+	public void setOptions(List<Integer> options) {
 		this.options = options;
 	}
 
-	public int getResponse() {
-		return response;
+	public String getScale() {
+		return scale;
 	}
 
-	public void setResponse(int response) {
-		this.response = response;
+	public void setScale(String scale) {
+		this.scale = scale;
 	}
 }

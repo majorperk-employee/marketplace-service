@@ -1,14 +1,14 @@
 package com.majorperk.marketservice.controller;
 
-import com.majorperk.marketservice.model.Account;
-import com.majorperk.marketservice.repository.AccountRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.majorperk.marketservice.model.Account;
+import com.majorperk.marketservice.repository.AccountRepository;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)

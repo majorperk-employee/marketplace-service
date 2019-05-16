@@ -1,9 +1,5 @@
 package com.majorperk.marketservice.controller;
 
-import com.majorperk.marketservice.model.Tier;
-import com.majorperk.marketservice.repository.AccountRepository;
-import com.majorperk.marketservice.service.TierService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.majorperk.marketservice.model.Tier;
+import com.majorperk.marketservice.repository.AccountRepository;
+import com.majorperk.marketservice.service.TierService;
+
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("tier")
 class TierController {
-
 
 	@Autowired
 	private AccountRepository accountRepository;

@@ -3,34 +3,28 @@ package com.majorperk.marketservice.service;
 import static com.majorperk.marketservice.utils.Constants.DEFAULT_FOLDER;
 import static com.majorperk.marketservice.utils.Constants.S_AND_P_EMPLOYEES;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.MappingIterator;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.model.SandPMetrics;
 import com.majorperk.marketservice.repository.AccountRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 @Service
 public class MetricsService {
 
 	@Autowired
 	AccountRepository accountRepository;
-	
 
 	@Autowired
     AmazonS3 s3client;

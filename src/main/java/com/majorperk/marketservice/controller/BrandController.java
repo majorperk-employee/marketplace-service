@@ -6,11 +6,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.majorperk.marketservice.model.reward.Brand;
-import com.majorperk.marketservice.repository.BrandRepository;
-import com.majorperk.marketservice.service.Loader;
-import com.majorperk.marketservice.service.TangoRewardMapper;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.majorperk.marketservice.model.reward.Brand;
+import com.majorperk.marketservice.repository.BrandRepository;
+import com.majorperk.marketservice.service.Loader;
+import com.majorperk.marketservice.service.TangoRewardMapper;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
