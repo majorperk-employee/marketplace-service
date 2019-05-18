@@ -17,6 +17,7 @@ import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.majorperk.marketservice.model.Survey;
+import com.majorperk.marketservice.repository.AccountRepository;
 import com.majorperk.marketservice.repository.SurveyRepository;
 
 @Service
@@ -27,6 +28,9 @@ public class SurveyService {
 
 	@Autowired
 	SurveyRepository surveyRepository;
+
+	@Autowired
+	private AccountRepository accountRepository;
 
 	@Value("${cloud.aws.s3.bucket}")
 	private String bucket;
@@ -51,5 +55,26 @@ public class SurveyService {
 
 	public List<Survey> getSurveysByPeriod(int period) {
 		return surveyRepository.findByPeriod(period);
+	}
+
+	public List<Survey> getSurveysForUser(long userId) {
+		double prodHours = accountRepository.findById(userId).get().getSAndPMetrics().getProd_hours();
+		return surveyRepository.findByPeriod(calculateSurveyPeriod(prodHours));
+	}
+
+	private int calculateSurveyPeriod(double prodHours) {
+		if (prodHours < 9) {
+			return 0;
+		} else if (prodHours > 8 && prodHours < 41) {
+			return 1;
+		} else if (prodHours > 79 && prodHours < 160) {
+			return 2;
+		} else if (prodHours > 159 && prodHours < 320) {
+			return 3;
+		} else if (prodHours > 319 && prodHours < 480) {
+			return 4;
+		} else {
+			return 5;
+		}
 	}
 }
