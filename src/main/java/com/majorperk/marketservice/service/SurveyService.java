@@ -1,6 +1,5 @@
 package com.majorperk.marketservice.service;
 
-import static com.majorperk.marketservice.utils.Constants.DEFAULT_FOLDER;
 import static com.majorperk.marketservice.utils.Constants.DEFAULT_SURVEY;
 
 import java.io.IOException;
@@ -8,23 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.majorperk.marketservice.model.Survey;
 import com.majorperk.marketservice.repository.AccountRepository;
 import com.majorperk.marketservice.repository.SurveyRepository;
+import com.majorperk.marketservice.utils.ReadS3Bucket;
 
 @Service
 public class SurveyService {
-
 	@Autowired
-	AmazonS3 s3client;
+	ReadS3Bucket readS3Bucket;
 
 	@Autowired
 	SurveyRepository surveyRepository;
@@ -32,12 +28,8 @@ public class SurveyService {
 	@Autowired
 	private AccountRepository accountRepository;
 
-	@Value("${cloud.aws.s3.bucket}")
-	private String bucket;
-
 	public List<Survey> readS3Surveys() {
-		S3Object s3object = s3client.getObject(bucket, DEFAULT_FOLDER + DEFAULT_SURVEY);
-		S3ObjectInputStream inputStream = s3object.getObjectContent();
+		S3ObjectInputStream inputStream = readS3Bucket.readS3FileAsStream(DEFAULT_SURVEY);
 		ObjectMapper jsonMapper = new ObjectMapper();
 
 		try {
