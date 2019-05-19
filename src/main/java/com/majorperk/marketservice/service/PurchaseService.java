@@ -41,9 +41,9 @@ public class PurchaseService {
 		
 			rewardRepository.save(item);
 		
-			purchase.setCost(purchase.getCost() + item.updatePrice());
+			purchase.setCost(purchase.getCost() + item.getPrice());
 		
-			item.setPrice(item.updatePrice());
+			item.setPrice(item.getPrice());
 
 			purchase.addPurchaseItem(item);
 		

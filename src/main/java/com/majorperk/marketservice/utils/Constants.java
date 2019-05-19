@@ -1,8 +1,24 @@
 package com.majorperk.marketservice.utils;
 
 public class Constants {
-    public static final Integer USD_PTS_CONVERSION = 50;
 
+    public static final String PLATINUM = "Platinum";
+	public static final String GOLD = "Gold";	
+	public static final String SILVER = "Silver";
+	public static final String EMPLOYEE = "Employee";
+	
+	public static final double PLATINUM_PERCENT = .95;
+	public static final double GOLD_PERCENT = .90;	
+	public static final double SILVER_PERCENT = .85;
+	
+	public static final int PLATINUM_DAYS = 120;
+	public static final int GOLD_DAYS = 90;	
+	public static final int SILVER_DAYS = 60;
+    
+    public static final Integer PLATINUM_MULTIPLIER = 45;
+    public static final Integer GOLD_MULTIPLIER = 50;
+    public static final Integer SILVER_MULTIPLIER = 55;
+    public static final Integer EMPLOYEE_MULTIPLIER = 60;
 
     /* AWS S3 */
 

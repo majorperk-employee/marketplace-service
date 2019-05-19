@@ -16,6 +16,7 @@ public class Tier {
 	String currentTier;
 	String nextTier;	
 	
+	int multiplier;
 	double absenteeismGoal;
 	int totalDaysGoal;
 
@@ -48,5 +49,19 @@ public class Tier {
 	
 	public void setTotalDaysGoal(int totalDaysGoal) {
 		this.totalDaysGoal = totalDaysGoal;
+	}
+
+	/**
+	 * @return the multiplier
+	 */
+	public int getMultiplier() {
+		return multiplier;
+	}
+
+	/**
+	 * @param multiplier the multiplier to set
+	 */
+	public void setMultiplier(int multiplier) {
+		this.multiplier = multiplier;
 	}
 }
