@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="account")
+@Table(name = "account")
 public class Account {
 
 	@Id
@@ -19,19 +19,16 @@ public class Account {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cart cart = new Cart();
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Purchase> purchases = new ArrayList<Purchase>();
 
-	@OneToOne(cascade= CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Tier tier = new Tier();
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private SandPMetrics sAndPMetrics = new SandPMetrics();
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Survey> surveys = new ArrayList<Survey>();
-	
+
 	private String phone;
 	private String nickname;
 	private String username;
@@ -40,7 +37,6 @@ public class Account {
 	private String email;
 	private String picture;
 	private Integer points;
-	
 
 	// DEFAULT, makes JPA happy.
 	public Account() {
@@ -52,14 +48,15 @@ public class Account {
 		this.password = password;
 	}
 
-	public Account(String username, String password, Tier tier, SandPMetrics sAndPMetrics, String picture, Integer points) {
+	public Account(String username, String password, Tier tier, SandPMetrics sAndPMetrics, String picture,
+			Integer points) {
 		this.username = username;
 		this.password = password;
 		this.tier = tier;
 		this.sAndPMetrics = sAndPMetrics;
 		this.picture = picture;
 		this.points = points;
-		}
+	}
 
 	@Override
 	public String toString() {
@@ -82,14 +79,6 @@ public class Account {
 		this.tier = tier;
 	}
 
-	public List<Survey> getSurveys() {
-		return surveys;
-	}
-
-	public void setSurveys(List<Survey> surveys) {
-		this.surveys = surveys;
-	}
-
 	public SandPMetrics getSAndPMetrics() {
 		return sAndPMetrics;
 	}
@@ -97,7 +86,7 @@ public class Account {
 	public void setSAndPMetrics(SandPMetrics sAndPMetrics) {
 		this.sAndPMetrics = sAndPMetrics;
 	}
-	
+
 	public String getPicture() {
 		return picture;
 	}
@@ -137,7 +126,7 @@ public class Account {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public boolean isManager() {
 		return manager;
 	}
@@ -161,7 +150,7 @@ public class Account {
 	public void setPurchases(List<Purchase> purchases) {
 		this.purchases = purchases;
 	}
-	
+
 	public void addPurchase(Purchase purchase) {
 		this.points -= purchase.cost;
 		this.purchases.add(purchase);

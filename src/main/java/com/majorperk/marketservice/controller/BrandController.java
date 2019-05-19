@@ -28,80 +28,81 @@ import com.majorperk.marketservice.service.TangoRewardMapper;
 @RequestMapping("brands")
 public class BrandController {
 
-    @Autowired
-    Loader brandLoader;
+	@Autowired
+	Loader brandLoader;
 
-    @Autowired
-    private BrandRepository brandRepository;
+	@Autowired
+	private BrandRepository brandRepository;
 
-    @Autowired
-    private TangoRewardMapper tangoRewardMapper;
+	@Autowired
+	private TangoRewardMapper tangoRewardMapper;
 
-    @GetMapping("/tango/catalog")
-    public @Valid List<Brand> getCatalog(@RequestParam(value = "verbose", defaultValue="false", required = false) Boolean verbose) {
-        try {
-            return this.tangoRewardMapper.getCatalog(verbose);
-        } catch (Exception e) {
-            System.out.println("Unable to access TangoCard catalog :::" + e);
-            return null;
-        }
-    }
+	@GetMapping("/tango/catalog")
+	public @Valid List<Brand> getCatalog(
+			@RequestParam(value = "verbose", defaultValue = "false", required = false) Boolean verbose) {
+		try {
+			return this.tangoRewardMapper.getCatalog(verbose);
+		} catch (Exception e) {
+			System.out.println("Unable to access TangoCard catalog :::" + e);
+			return null;
+		}
+	}
 
-    @GetMapping("/catalog")
-    public @Valid List<?> getAllBrands(@RequestParam(value = "verbose", defaultValue="false", required = false) Boolean verbose) {
-        try {
-            if (verbose) {
-                return brandRepository.findAll();
-            }
-            return brandRepository.findAllCondensed();
-        } catch (Exception e) {
-            System.out.println("Unable to list all brands. Please verify database :::" + e);
-            return null;
-        }
-    }
+	@GetMapping("/catalog")
+	public @Valid List<?> getAllBrands(
+			@RequestParam(value = "verbose", defaultValue = "false", required = false) Boolean verbose) {
+		try {
+			if (verbose) {
+				return brandRepository.findAll();
+			}
+			return brandRepository.findAllCondensed();
+		} catch (Exception e) {
+			System.out.println("Unable to list all brands. Please verify database :::" + e);
+			return null;
+		}
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = "application/json")
-    public Brand getBrandById(@PathVariable Long id) {
-        try {
-            return brandRepository.findById(id).get();
-        } catch (Exception e) {
-            System.out.println("Unable to find brand id: " + id + ". Please verify database :::" + e);
-            return null;
-        }
-    }
+	public Brand getBrandById(@PathVariable Long id) {
+		try {
+			return brandRepository.findById(id).get();
+		} catch (Exception e) {
+			System.out.println("Unable to find brand id: " + id + ". Please verify database :::" + e);
+			return null;
+		}
+	}
 
-    @PostMapping("/load/custom")
-    public @Valid List<Brand> createCustomRewardItems(@Valid @RequestBody List<Brand> rewardItem) {
-        try {
-            return brandRepository.saveAll(rewardItem);
-        } catch (Exception e) {
-            System.out.println("Unable to load custom objects to database." + e);
-            return new ArrayList<Brand>();
-        }
-    }
+	@PostMapping("/load/custom")
+	public @Valid List<Brand> createCustomRewardItems(@Valid @RequestBody List<Brand> rewardItem) {
+		try {
+			return brandRepository.saveAll(rewardItem);
+		} catch (Exception e) {
+			System.out.println("Unable to load custom objects to database." + e);
+			return new ArrayList<Brand>();
+		}
+	}
 
-    @PostMapping("/load/file")
-    public @Valid String loadDefaultRewardItems() throws IOException {
-        try {
-            brandRepository.saveAll(brandLoader.getS3DefaultBrands());
-            // brandRepository.saveAll(rewardLoader.createBrandsList(brandLoader.readJSON("./src/main/resources/TangoCardRewards.json")));
-            return  "Successful loading default catalog from S3";
-        } catch (Exception e) {
-            System.out.println("Unable to load from JSON.");
-            return "Unable to load default catalog from S3 "  + e;
-        }
-    }
+	@PostMapping("/load/file")
+	public @Valid String loadDefaultRewardItems() throws IOException {
+		try {
+			brandRepository.saveAll(brandLoader.getS3DefaultBrands());
+			return "Successful loading default catalog from S3";
+		} catch (Exception e) {
+			System.out.println("Unable to load from JSON.");
+			return "Unable to load default catalog from S3 " + e;
+		}
+	}
 
-    @PostMapping("/load")
-    public @Valid Object loadCatalog() throws IOException {
-        try {
-            brandRepository.saveAll(this.tangoRewardMapper.getCatalog(true));
-            return "Successful database load from API";
-        } catch (Exception e) {
-            System.out.println("Unable to load API Catalog. Attempting to load defaults ... ");
-            this.loadDefaultRewardItems();
-            return "Unable to load API Catalog. Attempting to load defaults ... ";
-        }
-    }
+	@PostMapping("/load")
+	public @Valid Object loadCatalog() throws IOException {
+		try {
+			brandRepository.saveAll(this.tangoRewardMapper.getCatalog(true));
+			return "Successful database load from API";
+		} catch (Exception e) {
+			System.out.println("Unable to load API Catalog. Attempting to load defaults ... ");
+			this.loadDefaultRewardItems();
+			return "Unable to load API Catalog. Attempting to load defaults ... ";
+		}
+	}
 }

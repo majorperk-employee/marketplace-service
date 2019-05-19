@@ -3,7 +3,6 @@ package com.majorperk.marketservice.service;
 import static com.majorperk.marketservice.utils.Constants.DEFAULT_ACCOUNTS;
 import static com.majorperk.marketservice.utils.Constants.DEFAULT_BRANDS;
 import static com.majorperk.marketservice.utils.Constants.DEFAULT_CATEGORIES;
-import static com.majorperk.marketservice.utils.Constants.DEFAULT_FOLDER;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,12 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -25,16 +21,14 @@ import com.majorperk.marketservice.model.Account;
 import com.majorperk.marketservice.model.Category;
 import com.majorperk.marketservice.model.reward.Brand;
 import com.majorperk.marketservice.utils.ReadJson;
+import com.majorperk.marketservice.utils.ReadS3Bucket;
 
 @Service
 @PropertySource("classpath:application.yml")
 public class Loader {
 
 	@Autowired
-    AmazonS3 s3client;
-
-    @Value("${cloud.aws.s3.bucket}")
-    private String bucket;
+	ReadS3Bucket readS3Bucket;
 
 	public String readJSON(String pathToRead) throws IOException {
 		ReadJson readJson = new ReadJson();
@@ -58,10 +52,10 @@ public class Loader {
 	}
 
 	public List<Category> getS3DefaultCategories() {
-		S3Object s3object = s3client.getObject(bucket, DEFAULT_FOLDER + DEFAULT_CATEGORIES);
-		S3ObjectInputStream inputStream = s3object.getObjectContent();
 		ObjectMapper jsonMapper = new ObjectMapper();
+		S3ObjectInputStream inputStream = readS3Bucket.readS3FileAsStream(DEFAULT_CATEGORIES);
 		try {
+
 			List<Category> categories = jsonMapper.readValue(inputStream, new TypeReference<List<Category>>() {
 			});
 			return categories;
@@ -88,9 +82,8 @@ public class Loader {
 	}
 
 	public List<Account> getS3DefaultAccounts() {
-		S3Object s3object = s3client.getObject(bucket, DEFAULT_FOLDER + DEFAULT_ACCOUNTS);
-		S3ObjectInputStream inputStream = s3object.getObjectContent();
 		ObjectMapper jsonMapper = new ObjectMapper();
+		S3ObjectInputStream inputStream = readS3Bucket.readS3FileAsStream(DEFAULT_ACCOUNTS);
 		try {
 			List<Account> accounts = jsonMapper.readValue(inputStream, new TypeReference<List<Account>>() {
 			});
@@ -117,12 +110,12 @@ public class Loader {
 	}
 
 	public List<Brand> getS3DefaultBrands() {
-		S3Object s3object = s3client.getObject(bucket, DEFAULT_FOLDER + DEFAULT_BRANDS);
-		S3ObjectInputStream inputStream = s3object.getObjectContent();
 		ObjectMapper jsonMapper = new ObjectMapper();
-
+		S3ObjectInputStream inputStream = readS3Bucket.readS3FileAsStream(DEFAULT_BRANDS);
 		try {
-			List<Brand> brands = jsonMapper.readValue(inputStream, new TypeReference<List<Brand>>() {});
+			List<Brand> brands = jsonMapper.readValue(inputStream, new TypeReference<List<Brand>>() {
+			});
+			System.out.println("Brands! " + brands.size());
 			return brands;
 		} catch (Exception e) {
 			inputStream.abort();
