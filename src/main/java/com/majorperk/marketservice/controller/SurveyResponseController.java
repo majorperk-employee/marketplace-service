@@ -22,7 +22,7 @@ class SurveyResponseController {
 	@ResponseBody
 	@RequestMapping(value = "/save/{question}/{rating}", method = RequestMethod.POST, produces = "application/json")
 	public SurveyResponse loadAllSurveys(@PathVariable String question, @PathVariable int rating) {
-		SurveyResponse surveyResponse = new SurveyResponse(question, rating);
-		return surveyResponseRepository.save(surveyResponse);
+		return surveyResponseRepository.save(new SurveyResponse(question, rating));
 	}
+
 }
