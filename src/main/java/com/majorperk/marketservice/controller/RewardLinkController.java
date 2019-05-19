@@ -5,7 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.majorperk.marketservice.model.reward.Brand;
-import com.majorperk.marketservice.service.TangoRewardMapper;
+import com.majorperk.marketservice.service.TangoRewardService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("rewardlink")
-class PurchaseController {
+class RewardLinkController {
 
 	@Autowired
-	private TangoRewardMapper tangoRewardMapper;
+	private TangoRewardService tangoRewardService;
 
     @GetMapping("/view")
 	public @Valid List<Brand> getCatalog() {
@@ -39,7 +39,7 @@ class PurchaseController {
 	public @Valid List<Brand> getCatalog(
 			@RequestParam(value = "verbose", defaultValue = "false", required = false) Boolean verbose) {
 		try {
-			return this.tangoRewardMapper.getCatalog(verbose);
+			return this.tangoRewardService.getCatalog(verbose);
 		} catch (Exception e) {
 			System.out.println("Unable to access TangoCard catalog :::" + e);
 			return null;
@@ -51,7 +51,7 @@ class PurchaseController {
     @RequestMapping(value = "/redeem/{userid}", method = RequestMethod.POST, produces = "application/json")
     Object redeemRewardLink(@PathVariable Long userid) {
         try {
-            return tangoRewardMapper.redeemRewardLink(userid);
+            return tangoRewardService.redeemRewardLink(userid);
         } catch (Exception e) {
             System.out.println("Unable to complete rewardLink redemption for " + userid);
             return null;

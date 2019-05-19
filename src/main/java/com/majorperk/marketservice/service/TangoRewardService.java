@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 @PropertySource("classpath:application.yml")
-public class TangoRewardMapper {
+public class TangoRewardService {
 
     @Value("${tangocard.baseUrl}")
     private String baseUrl;
@@ -28,11 +28,6 @@ public class TangoRewardMapper {
     public Object redeemRewardLink(Long userid) {
 		return userid;
 	}
-
-    public List<Brand> getRewardLink() {
-        RestTemplate restTemplate = new RestTemplateBuilder().basicAuthentication(username, password).build();
-        return restTemplate.getForObject(baseUrl + "/catalogs?verbose={verbose}", Catalog.class, verbose).getBrands();
-    }
 
     public List<Brand> getCatalog(Boolean verbose) {
         RestTemplate restTemplate = new RestTemplateBuilder().basicAuthentication(username, password).build();
