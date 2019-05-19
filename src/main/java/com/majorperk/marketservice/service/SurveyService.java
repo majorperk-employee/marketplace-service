@@ -65,8 +65,10 @@ public class SurveyService {
 			return 3;
 		} else if (prodHours > 319 && prodHours < 480) {
 			return 4;
-		} else {
+		} else if (prodHours > 479) {
 			return 5;
+		} else {
+			return -1;
 		}
 	}
 }
