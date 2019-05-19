@@ -12,6 +12,7 @@ public class SurveyResponse {
 	@GeneratedValue
 	Long id;
 
+	Long userId;
 	String question;
 	int rating;
 
@@ -30,6 +31,14 @@ public class SurveyResponse {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getQuestion() {
