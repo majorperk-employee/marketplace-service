@@ -21,6 +21,8 @@ import com.majorperk.marketservice.model.reward.SmallBrand;
 public interface BrandRepository extends JpaRepository<Brand, Long> {
     List<Brand> findAll();
 
+    Brand findOneByBrandKey();
+
     String FIND_ALL_CONDENSED = "SELECT new " +
         "com.majorperk.marketservice.model.reward.SmallBrand" +
         "(" + BRAND_OBJECT_ID + ", " + 

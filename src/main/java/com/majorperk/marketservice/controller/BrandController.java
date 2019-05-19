@@ -37,17 +37,6 @@ public class BrandController {
 	@Autowired
 	private TangoRewardMapper tangoRewardMapper;
 
-	@GetMapping("/tango/catalog")
-	public @Valid List<Brand> getCatalog(
-			@RequestParam(value = "verbose", defaultValue = "false", required = false) Boolean verbose) {
-		try {
-			return this.tangoRewardMapper.getCatalog(verbose);
-		} catch (Exception e) {
-			System.out.println("Unable to access TangoCard catalog :::" + e);
-			return null;
-		}
-	}
-
 	@GetMapping("/catalog")
 	public @Valid List<?> getAllBrands(
 			@RequestParam(value = "verbose", defaultValue = "false", required = false) Boolean verbose) {
