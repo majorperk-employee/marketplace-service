@@ -35,11 +35,11 @@ class RewardLinkController {
 	@GetMapping("/view")
 	public @Valid Brand getRewardLinkItem() {
 		try {
-			Brand brandKeyResponse = brandRepository.findOneByBrandKey(brandKey);
+			Brand brandKeyResponse = brandRepository.getOneByBrandKey(brandKey);
 			if (brandKeyResponse != null && brandKeyResponse.getBrandName().contains(rewardLinkText)) {
 				return brandKeyResponse;
 			}
-			Brand brandNameResponse = brandRepository.findOneByBrandName(rewardLinkText);
+			Brand brandNameResponse = brandRepository.getOneByBrandName(rewardLinkText);
 			if (brandNameResponse != null) {
 				return brandNameResponse;
 			} else {

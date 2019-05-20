@@ -10,8 +10,6 @@ import static com.majorperk.marketservice.utils.Constants.BRAND_OBJECT_STATUS;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -34,8 +32,7 @@ public interface BrandRepository extends JpaRepository<Brand, Long> {
 	@Query(FIND_ALL_CONDENSED)
 	public List<SmallBrand> findAllCondensed();
 
-	@Valid
-	Brand findOneByBrandKey(String brandKey);
+	Brand getOneByBrandKey(String brandKey);
 
-	Brand findOneByBrandName(String brandName);
+	Brand getOneByBrandName(String brandName);
 }
