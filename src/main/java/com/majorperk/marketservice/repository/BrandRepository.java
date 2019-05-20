@@ -32,7 +32,7 @@ public interface BrandRepository extends JpaRepository<Brand, Long> {
 	@Query(FIND_ALL_CONDENSED)
 	public List<SmallBrand> findAllCondensed();
 
-	Brand getOneByBrandKey(String brandKey);
+	Brand findFirstByBrandName(String brandName);
 
-	Brand getOneByBrandName(String brandName);
+	Brand findFirstByBrandKey(String brandKey);
 }
