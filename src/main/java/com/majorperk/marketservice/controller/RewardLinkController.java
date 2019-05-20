@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,13 +50,13 @@ class RewardLinkController {
     // Checkout
     @ResponseBody
     @RequestMapping(value = "/redeem/{userid}", method = RequestMethod.POST, produces = "application/json")
-    Object redeemRewardLink(@PathVariable Long userid) {
+    Object redeemRewardLink(@PathVariable Long userid, @RequestBody int amount) {
         try {
-            return tangoRewardService.redeemRewardLink(userid);
+            return tangoRewardService.redeemRewardLink(userid, amount);
         } catch (Exception e) {
-            System.out.println("Unable to complete rewardLink redemption for " + userid);
+            System.out.println("Unable to complete rewardLink redemption for " + userid + " " + e);
             return null;
         }
-    }
-
+	}
+	
 }

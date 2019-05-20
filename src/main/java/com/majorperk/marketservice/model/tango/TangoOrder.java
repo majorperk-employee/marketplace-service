@@ -4,17 +4,61 @@ public class TangoOrder {
     String accountIdentifier = "main-account";
     String customerIdentifier = "main-customer";
 
-    String amount;
+    int amount;
     String utid;
     
     String emailSubject;
     String externalRefID;
     String message;
     String notes;
-    String sendEmail;
+    boolean sendEmail;
 
-    TangoOrderSender sender;
-    TangoOrderRecipient recipient;
+    TangoContactInfo sender;
+    TangoContactInfo recipient;
+
+    public TangoOrder( 
+        String accountIdentifier, 
+        String customerIdentifier, 
+        int amount, 
+        String utid, 
+        boolean sendEmail, 
+        TangoContactInfo sender, 
+        TangoContactInfo recipient 
+    ) {
+        this.accountIdentifier = accountIdentifier;
+        this.customerIdentifier = customerIdentifier;
+        this.amount = amount;
+        this.utid = utid;
+        this.sendEmail = sendEmail;
+        this.sender = sender;
+        this.recipient = recipient;
+    };
+
+    public TangoOrder( 
+        String accountIdentifier, 
+        String customerIdentifier, 
+        int amount, 
+        String utid, 
+        String emailSubject, 
+        String externalRefID, 
+        String message, 
+        String notes, 
+        boolean sendEmail, 
+        TangoContactInfo sender, 
+        TangoContactInfo recipient 
+    ) {
+        this.accountIdentifier = accountIdentifier;
+        this.customerIdentifier = customerIdentifier;
+        this.amount = amount;
+        this.utid = utid;
+        this.emailSubject = emailSubject;
+        this.externalRefID = externalRefID;
+        this.message = message;
+        this.notes = notes;
+        this.sendEmail = sendEmail;
+        this.sender = sender;
+        this.recipient = recipient;
+    };
 
     public String getAccountIdentifier() {
         return accountIdentifier;
@@ -32,11 +76,11 @@ public class TangoOrder {
         this.customerIdentifier = customerIdentifier;
     }
 
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -80,40 +124,28 @@ public class TangoOrder {
         this.notes = notes;
     }
 
-    public String getSendEmail() {
+    public boolean getSendEmail() {
         return sendEmail;
     }
 
-    public void setSendEmail(String sendEmail) {
+    public void setSendEmail(boolean sendEmail) {
         this.sendEmail = sendEmail;
     }
 
-    public TangoOrderSender getSender() {
+    public TangoContactInfo getSender() {
         return sender;
     }
 
-    public void setSender(TangoOrderSender sender) {
+    public void setSender(TangoContactInfo sender) {
         this.sender = sender;
     }
 
-    public TangoOrderRecipient getRecipient() {
+    public TangoContactInfo getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(TangoOrderRecipient recipient) {
+    public void setRecipient(TangoContactInfo recipient) {
         this.recipient = recipient;
     }
 
-}
-
-interface TangoOrderSender {
-    String senderemail = "";
-    String senderfirstName = "";
-    String senderlastName = "";
-}
-
-interface TangoOrderRecipient {
-    String recipientemail = "";
-    String recipientfirstName = "";
-    String recipientlastName = "";
 }
