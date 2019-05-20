@@ -2,26 +2,33 @@ package com.majorperk.marketservice.model.tango;
 
 import java.util.Map;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@Entity
+@Table(name="rewardlinks")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TangoOrderResponse {
 
     @Id
     String referenceOrderID;
-    
+
     String utid;
     String rewardName;
     String status;
     String createdAt;
 
     String redemptionLink;
+
+    @Column(length=10485760)
     String redemptionInstructions;
 
-    Double total;
+    int total;
     String currencyCode;
 
     @JsonProperty("reward")
@@ -33,7 +40,8 @@ public class TangoOrderResponse {
 
     @JsonProperty("amountCharged")
     private void unpackAmountCharged(Map<String, Object> amountCharged) {
-        total = (Double)amountCharged.get("total");
+        Double temp = (Double) amountCharged.get("total");
+        total = temp.intValue();
         currencyCode = (String)amountCharged.get("currencyCode");
     }
 
@@ -97,11 +105,11 @@ public class TangoOrderResponse {
         this.redemptionInstructions = redemptionInstructions;
     }
 
-    public Double getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 

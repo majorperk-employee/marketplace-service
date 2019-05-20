@@ -84,14 +84,14 @@ class RewardLinkController {
 
 	// Checkout
 	@ResponseBody
-	@RequestMapping(value = "/redeem/{userid}", method = RequestMethod.POST, produces = "application/json")
-	TangoOrderResponse redeemRewardLink(@PathVariable Long userid, @RequestBody int amount) {
+	@RequestMapping(value = "/redeem/{userId}", method = RequestMethod.POST, produces = "application/json")
+	TangoOrderResponse redeemRewardLink(@PathVariable Long userId, @RequestBody int amount) {
 		try {
-			TangoOrder order = tangoRewardService.createTangoOrder(userid, amount);
-			RestTemplate restTemplate = new RestTemplateBuilder().basicAuthentication(username, password).build();
-			return restTemplate.postForObject(baseUrl + "/orders", order, TangoOrderResponse.class);
+			TangoOrder order = tangoRewardService.createTangoOrder(userId, amount);
+			
+			return tangoRewardService.redeemRewardLink(userId, order);
 		} catch (Exception e) {
-			System.out.println("Unable to complete rewardLink redemption for " + userid + " " + e);
+			System.out.println("Unable to complete rewardLink redemption for " + userId + " " + e);
 			return null;
 		}
 	}

@@ -10,6 +10,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.majorperk.marketservice.model.tango.TangoOrderResponse;
+
 @Entity
 @Table(name = "account")
 public class Account {
@@ -29,6 +31,9 @@ public class Account {
 	@OneToOne(cascade = CascadeType.ALL)
 	private SandPMetrics sAndPMetrics = new SandPMetrics();
 
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<TangoOrderResponse> rewardLinks = new ArrayList<TangoOrderResponse>();
+
 	private String phone;
 	private String nickname;
 	private String username;
@@ -37,6 +42,16 @@ public class Account {
 	private String email;
 	private String picture;
 	private Integer points;
+
+	public void addPurchase(Purchase purchase) {
+		this.points -= purchase.cost;
+		this.purchases.add(purchase);
+	}
+
+	public void addRewardLink(TangoOrderResponse rewardLink) {
+		this.points -= rewardLink.getTotal();
+		this.rewardLinks.add(rewardLink);
+	}
 
 	// DEFAULT, makes JPA happy.
 	public Account() {
@@ -151,11 +166,6 @@ public class Account {
 		this.purchases = purchases;
 	}
 
-	public void addPurchase(Purchase purchase) {
-		this.points -= purchase.cost;
-		this.purchases.add(purchase);
-	}
-
 	/**
 	 * @return the phone
 	 */
@@ -182,5 +192,13 @@ public class Account {
 	 */
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+
+	public List<TangoOrderResponse> getRewardLinks() {
+		return rewardLinks;
+	}
+
+	public void setRewardLinks(List<TangoOrderResponse> rewardLinks) {
+		this.rewardLinks = rewardLinks;
 	}
 }

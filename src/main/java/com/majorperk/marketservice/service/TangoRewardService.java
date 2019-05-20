@@ -3,6 +3,7 @@ package com.majorperk.marketservice.service;
 import java.util.List;
 
 import com.majorperk.marketservice.model.Account;
+import com.majorperk.marketservice.model.Cart;
 import com.majorperk.marketservice.model.Catalog;
 import com.majorperk.marketservice.model.SandPMetrics;
 import com.majorperk.marketservice.model.reward.Brand;
@@ -10,13 +11,13 @@ import com.majorperk.marketservice.model.tango.TangoContactInfo;
 import com.majorperk.marketservice.model.tango.TangoOrder;
 import com.majorperk.marketservice.model.tango.TangoOrderResponse;
 import com.majorperk.marketservice.repository.AccountRepository;
+import com.majorperk.marketservice.repository.RewardLinkRepository;
 import com.majorperk.marketservice.repository.SandPMetricsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -40,10 +41,13 @@ public class TangoRewardService {
     private String customerIdentifier;
     
     @Autowired
-    private AccountRepository accountRepository;
+	private AccountRepository accountRepository;
     
     @Autowired
-	private SandPMetricsRepository sandpRepository;
+    private SandPMetricsRepository sandpRepository;
+    
+    @Autowired
+	private RewardLinkRepository rewardLinkRepository;
 
     public TangoOrder createTangoOrder(Long userid, int amount) {
 
@@ -72,11 +76,23 @@ public class TangoRewardService {
 		return tangoOrder;
     }
 
-    // public TangoOrderResponse parseTangoOrderResponse(Object response) {
-    //     TangoOrderResponse resp = new TangoOrderResponse();
-    //     System.out.println(response.referenceOrderID);
-    //     return resp;
-    // }
+    public TangoOrderResponse redeemRewardLink(Long userId, TangoOrder order) {
+		Account account = accountRepository.findById(userId).get();
+
+		if (account.getPoints() < order.getAmount() ) {
+			System.out.println(account.getId() + " insufficient funds.");
+			return new TangoOrderResponse();
+		}
+        
+        RestTemplate restTemplate = new RestTemplateBuilder().basicAuthentication(username, password).build();
+        TangoOrderResponse response = restTemplate.postForObject(baseUrl + "/orders", order, TangoOrderResponse.class);
+        
+		account.addRewardLink(response);
+		
+		accountRepository.save(account);
+
+		return response;
+	}
     
     public List<Brand> getCatalog(Boolean verbose) {
         RestTemplate restTemplate = new RestTemplateBuilder().basicAuthentication(username, password).build();
