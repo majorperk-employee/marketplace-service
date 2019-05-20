@@ -8,6 +8,7 @@ import com.majorperk.marketservice.model.SandPMetrics;
 import com.majorperk.marketservice.model.reward.Brand;
 import com.majorperk.marketservice.model.tango.TangoContactInfo;
 import com.majorperk.marketservice.model.tango.TangoOrder;
+import com.majorperk.marketservice.model.tango.TangoOrderResponse;
 import com.majorperk.marketservice.repository.AccountRepository;
 import com.majorperk.marketservice.repository.SandPMetricsRepository;
 
@@ -15,13 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 @PropertySource("classpath:application.yml")
 public class TangoRewardService {
-
+    
     @Value("${tangocard.baseUrl}")
     private String baseUrl;
 
@@ -43,7 +45,7 @@ public class TangoRewardService {
     @Autowired
 	private SandPMetricsRepository sandpRepository;
 
-    public Object redeemRewardLink(Long userid, int amount) {
+    public TangoOrder createTangoOrder(Long userid, int amount) {
 
         SandPMetrics accountSP;
         Account accountMP;
@@ -68,15 +70,17 @@ public class TangoRewardService {
         );
 
 		return tangoOrder;
-	}
-
-    public Object redeemRewardLink(TangoOrder order) {
-        RestTemplate restTemplate = new RestTemplateBuilder().basicAuthentication(username, password).build();
-        return restTemplate.postForObject(baseUrl + "/orders", order, Object.class);
     }
 
+    // public TangoOrderResponse parseTangoOrderResponse(Object response) {
+    //     TangoOrderResponse resp = new TangoOrderResponse();
+    //     System.out.println(response.referenceOrderID);
+    //     return resp;
+    // }
+    
     public List<Brand> getCatalog(Boolean verbose) {
         RestTemplate restTemplate = new RestTemplateBuilder().basicAuthentication(username, password).build();
         return restTemplate.getForObject(baseUrl + "/catalogs?verbose={verbose}", Catalog.class, verbose).getBrands();
     }
+
 }
