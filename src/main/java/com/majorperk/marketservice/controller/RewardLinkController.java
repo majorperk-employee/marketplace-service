@@ -88,7 +88,6 @@ class RewardLinkController {
 	TangoOrderResponse redeemRewardLink(@PathVariable Long userId, @RequestBody int amount) {
 		try {
 			TangoOrder order = tangoRewardService.createTangoOrder(userId, amount);
-			
 			return tangoRewardService.redeemRewardLink(userId, order);
 		} catch (Exception e) {
 			System.out.println("Unable to complete rewardLink redemption for " + userId + " " + e);

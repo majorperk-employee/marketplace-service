@@ -49,7 +49,7 @@ public class Account {
 	}
 
 	public void addRewardLink(TangoOrderResponse rewardLink) {
-		this.points -= rewardLink.getTotal();
+		this.points -= (rewardLink.getTotal() * this.tier.multiplier);
 		this.rewardLinks.add(rewardLink);
 	}
 

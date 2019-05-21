@@ -77,7 +77,8 @@ public class TangoRewardService {
     }
 
     public TangoOrderResponse redeemRewardLink(Long userId, TangoOrder order) {
-		Account account = accountRepository.findById(userId).get();
+        
+        Account account = accountRepository.findById(userId).get();
 
 		if (account.getPoints() < order.getAmount() ) {
 			System.out.println(account.getId() + " insufficient funds.");
@@ -85,6 +86,7 @@ public class TangoRewardService {
 		}
         
         RestTemplate restTemplate = new RestTemplateBuilder().basicAuthentication(username, password).build();
+        
         TangoOrderResponse response = restTemplate.postForObject(baseUrl + "/orders", order, TangoOrderResponse.class);
         
 		account.addRewardLink(response);
