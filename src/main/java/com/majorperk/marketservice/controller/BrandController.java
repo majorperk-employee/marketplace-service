@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.majorperk.marketservice.model.reward.Brand;
 import com.majorperk.marketservice.repository.BrandRepository;
 import com.majorperk.marketservice.service.Loader;
-import com.majorperk.marketservice.service.TangoRewardMapper;
+import com.majorperk.marketservice.service.TangoRewardService;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -35,18 +35,7 @@ public class BrandController {
 	private BrandRepository brandRepository;
 
 	@Autowired
-	private TangoRewardMapper tangoRewardMapper;
-
-	@GetMapping("/tango/catalog")
-	public @Valid List<Brand> getCatalog(
-			@RequestParam(value = "verbose", defaultValue = "false", required = false) Boolean verbose) {
-		try {
-			return this.tangoRewardMapper.getCatalog(verbose);
-		} catch (Exception e) {
-			System.out.println("Unable to access TangoCard catalog :::" + e);
-			return null;
-		}
-	}
+	private TangoRewardService tangoRewardService;
 
 	@GetMapping("/catalog")
 	public @Valid List<?> getAllBrands(
@@ -97,7 +86,7 @@ public class BrandController {
 	@PostMapping("/load")
 	public @Valid Object loadCatalog() throws IOException {
 		try {
-			brandRepository.saveAll(this.tangoRewardMapper.getCatalog(true));
+			brandRepository.saveAll(this.tangoRewardService.getCatalog(true));
 			return "Successful database load from API";
 		} catch (Exception e) {
 			System.out.println("Unable to load API Catalog. Attempting to load defaults ... ");

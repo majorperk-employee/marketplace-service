@@ -11,7 +11,9 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         temp:
           use_jdbc_metadata_defaults: false
-
+tangocard:
+  accountIdentifier: main-account
+  customerIdentifier: main-customer
 ---
 
 spring:
@@ -24,6 +26,7 @@ tangocard:
   baseUrl: ${TANGO_BASE_URL}
   username: ${TANGO_USERNAME}
   password: ${TANGO_PASSWORD}
+
 cloud:
   aws:
     region: ${S3_REGION}
