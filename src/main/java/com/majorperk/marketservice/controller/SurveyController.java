@@ -18,7 +18,6 @@ import com.majorperk.marketservice.service.SurveyService;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("survey")
 class SurveyController {
-
 	@Autowired
 	SurveyService surveyService;
 

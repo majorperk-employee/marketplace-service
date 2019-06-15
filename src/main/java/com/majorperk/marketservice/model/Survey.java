@@ -15,15 +15,12 @@ public class Survey {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-
 	int period;
-
-	String question;
 	String duration;
-
+	String question;
+	int questionId;
 	@ElementCollection
 	List<Integer> options;
-
 	String scale;
 
 	public Survey() {
@@ -52,6 +49,14 @@ public class Survey {
 
 	public void setQuestion(String question) {
 		this.question = question;
+	}
+
+	public int getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
 	}
 
 	public String getDuration() {

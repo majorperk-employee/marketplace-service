@@ -11,9 +11,9 @@ public class SurveyResponse {
 	@Id
 	@GeneratedValue
 	Long id;
-
-	Long userId;
+	int period;
 	String question;
+	int questionId;
 	int rating;
 
 	public SurveyResponse() {
@@ -33,14 +33,6 @@ public class SurveyResponse {
 		this.id = id;
 	}
 
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
 	public String getQuestion() {
 		return question;
 	}
@@ -55,5 +47,21 @@ public class SurveyResponse {
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+
+	public int getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
+	public int getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(int period) {
+		this.period = period;
 	}
 }
